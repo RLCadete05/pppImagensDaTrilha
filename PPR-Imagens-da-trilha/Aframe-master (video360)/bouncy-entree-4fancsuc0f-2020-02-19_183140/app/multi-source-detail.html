@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- Como se este Glitch fosse um típico CodePen HTML ... -->    
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    
+    <!-- Use componentes definidos em arquivos separados. -->
+    <script src="arrow-key-rotation.js"></script>
+    <script src="play-on-window-click.js"></script>
+    <script src="play-on-vrdisplayactivate-or-enter-vr.js"></script>
+
+    <!-- Especifique a cena -->
+    <a-scene stats>
+      <!-- O exemplo original também tem essa rotação de 180 graus, para parecer estar avançando. -->
+      <a-videosphere rotation="0 180 0" src="#video" 
+                     play-on-window-click
+                     play-on-vrdisplayactivate-or-enter-vr>
+      </a-videosphere>
+      
+      <!-- Defina a câmera com altura zero do usuário, movimento desativado e rotação da tecla de seta adicionada. -->
+      <a-camera user-height="0" wasd-controls-enabled="false" arrow-key-rotation>
+        <!-- Elementos de texto para exibir mensagens. -->
+        <a-entity id="msg" position="0 -0.3 -1.5" text="align:center; 
+                width:3;
+                wrapCount:100;
+                color:red;
+                value:Click window to make the video play, if needed.">
+        </a-entity>
+        <!--
+          Isso deve funcionar com, pelo menos:
+          Visualização da tecnologia Safari no MacOS, Edge no Windows 10, Navegador Oculus, Samsung Internet, Chrome no Android
+          (application / x-mpegurl, que é HLS nativo).
+          Firefox no MacOS / Windows, Chrome no MacOS / Windows
+          (vídeo / mp4).
+
+          Isso pode falhar com, pelo menos:
+          Safari no MacOS / iOS (erros HLS e / ou CORS), Chromium (falta de suporte a codec).
+        -->
+      </a-camera>      
+      
+      <!-- Não espere o vídeo carregar, nós o transmitiremos. -->
+      <a-assets timeout="1">
+        <!-- Vídeo de origem múltipla. -->
+        <video id="video" 
+              style="display:none"
+              autoplay loop crossorigin="anonymous" playsinline webkit-playsinline >
+          <!-- Fonte de vídeo HLS nativa. -->
+          <source type="application/x-mpegurl"
+                  src="Best VR 360 Video.mp4" />
+          <source src="Best VR 360 Video.mp4" type="video/mp4"/>
+        </video>
+      </a-assets>
+    </a-scene>
+    
+    <!-- Anexe outros comportamentos. -->
+    <script>
+      var video = document.querySelector('#video');
+      var msg = document.querySelector('#msg');
+      
+      // Quando recebermos o evento de reprodução, mostre qual fonte é usada e que tipo é.
+      video.addEventListener('playing', function () {
+        var currentSource = video.querySelector('[src="' + video.currentSrc + '"]');
+        msg.setAttribute('text', 'value', video.currentSrc + '\n' + currentSource.type);                
+      });
+    </script>
+  </body>
+</html>

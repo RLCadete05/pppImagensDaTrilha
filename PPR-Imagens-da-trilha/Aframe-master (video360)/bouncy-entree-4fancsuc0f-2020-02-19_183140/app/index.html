@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <!-- Como se este Glitch fosse um típico CodePen HTML ... -->    
+    <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    
+    <!-- Use componentes definidos em arquivos separados. -->
+    <script src="arrow-key-rotation.js"></script>
+    <script src="play-on-window-click.js"></script>
+    <script src="play-on-vrdisplayactivate-or-enter-vr.js"></script>
+    <script src="hide-once-playing.js"></script>
+
+    <!-- Especifique nossa cena. -->
+    <a-scene>
+      <!-- O exemplo original também tem essa rotação de 180 graus, para parecer estar avançando. -->
+      <a-videosphere rotation="0 180 0" src="#video" 
+                     play-on-window-click
+                     play-on-vrdisplayactivate-or-enter-vr>
+      </a-videosphere>
+      
+      <!-- Defina a câmera com altura zero do usuário, movimento desativado e rotação da tecla de seta adicionada. -->
+      <a-camera user-height="0" wasd-controls-enabled="false" arrow-key-rotation>
+        <!-- Elemento de texto para exibir mensagens. Ocultar quando o vídeo estiver sendo reproduzido. -->
+        <a-entity id="msg" position="0 -0.3 -1.5" text="align:center; 
+                width:3;
+                wrapCount:100;
+                color:red;
+                value:Clique na janela para reproduzir o vídeo, se necessário."
+                hide-once-playing="#video">
+        </a-entity>
+      </a-camera>      
+      
+      <!-- Aguarde o vídeo carregar. -->
+      <a-assets>
+        <!-- Vídeo de fonte única. -->
+        <video  id="video" 
+              style="display:none"
+              autoplay loop crossorigin="anonymous" playsinline webkit-playsinline>
+               <source src="Best VR 360 Video.mp4" type="video/mp4">
+        </video>
+      </a-assets>
+    </a-scene>
+
+    <!--  Mostre um botão para alternar para o exemplo de várias fontes que mostra detalhes.-->
+    <button onClick="window.location.href='multi-source-detail.html'" style="position:absolute;top:10px;right:10px;">
+      Alterne para o exemplo detalhado de várias fontes
+    </button>
+  </body>
+</html>
