@@ -1,0 +1,14 @@
+const express = require('express');
+const fs = require('fs')
+const app = express();
+
+app.get('/', (req, res) => {
+	res.writeHead(200, {"Content-Type": "video/mp4"})
+
+	const video = fs.createReadStream('Best VR 360 Video.mp4') 
+	video.pipe(res)
+})
+
+app.listen(8081, () => {
+	console.log('Rodando...')
+})
