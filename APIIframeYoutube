@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Iframe Youtube</title>
+</head>
+<body>
+    <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/QKm-SOOMC4c?enablejsapi=1&html5=1" 
+    frameborder="0" allowfullscreen></iframe> 
+
+        <button class="button" id="play-button">Play</button>
+        <button class="button" id="pause-button">Pause</button>
+        <button class="button" id="stop-button">Stop</button>
+        <button onclick="getPlaySpeed()" type="button">Qual a velocidade do vídeo?</button>
+        <button onclick="setPlayLento()" type="button">Lento</button><br> 
+        <button onclick="setPlayRapido()" type="button">Rápido</button><br> 
+        <button onclick="setPlayNormal()" type="button">Normal</button><br> 
+
+        <script>
+            //Injetar script da API do YouTube
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            //Variável global
+            var player;
+            //Essa função é chamada quando a API está pronta para uso
+            function onYouTubePlayerAPIReady() {
+                //crie o player global a partir do iframe específico (#video)
+                player = new YT.Player('video', {
+                    events: {
+                        //Chame esta função quando o player estiver pronto para usar
+                        'onReady': onPlayerReady
+                    }
+                });
+            }
+            function onPlayerReady(event) {
+                //Eventos de ligação
+                var playButton = document.getElementById("play-button");
+                playButton.addEventListener("click", function() {
+                    player.playVideo();
+                });
+                var pauseButton = document.getElementById("pause-button");
+                pauseButton.addEventListener("click", function() {
+                    player.pauseVideo();
+                });
+                var stopButton = document.getElementById("stop-button");
+                stopButton.addEventListener("click", function() {
+                    player.stopVideo();
+                });
+            }
+            var vid = document.getElementById("video");
+                function getPlaySpeed() {   
+                    alert(vid.playbackRate);
+                    console.log(vid.playbackRate); 
+                } 
+                function setPlayLento() { 
+                    vid.playbackRate = vid.playbackRate > 0.5? vid.playbackRate - 0.5: vid.playbackRate = 0.5; 
+                } 
+                function setPlayRapido(){
+                    vid.playbackRate += 0.5; 
+                }
+                function setPlayNormal(){
+                    vid.playbackRate = 1.0;
+                }
+        </script>
+</body>
+</html>
