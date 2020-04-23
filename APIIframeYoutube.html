@@ -6,7 +6,7 @@
     <title>API Iframe Youtube</title>
 </head>
 <body>
-    <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/QKm-SOOMC4c?enablejsapi=1&html5=1" 
+    <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/QKm-SOOMC4c?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
     frameborder="0" allowfullscreen></iframe> 
 
         <button class="button" id="play-button">Play</button>
@@ -50,19 +50,21 @@
                     player.stopVideo();
                 });
             }
-            var vid = document.getElementById("video");
                 function getPlaySpeed() {   
-                    alert(vid.playbackRate);
-                    console.log(vid.playbackRate); 
+                    alert(player.getPlaybackRate());
+                    console.log(player.getPlaybackRate()); 
                 } 
                 function setPlayLento() { 
-                    vid.playbackRate = vid.playbackRate > 0.5? vid.playbackRate - 0.5: vid.playbackRate = 0.5; 
+                    let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
+                    player.setPlaybackRate(playRate);
                 } 
                 function setPlayRapido(){
-                    vid.playbackRate += 0.5; 
+                    let playRate =  player.getPlaybackRate()+0.5; 
+                    player.setPlaybackRate(playRate);
                 }
                 function setPlayNormal(){
-                    vid.playbackRate = 1.0;
+                    let playRate = 1.0;
+                    player.setPlaybackRate(playRate);
                 }
         </script>
 </body>
