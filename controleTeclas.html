@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <title>Player de vídeo</title>
+    </head>
+    <body> 
+
+        <video id="player"  width="720" height="476" controls>
+            <source src="y2mate.com - Best VR 360 Video_QKm-SOOMC4c_360p (2).mp4" type="video/mp4">
+            <source src="y2mate.com - Best VR 360 Video_QKm-SOOMC4c_360p (2).ogg" type="video/ogg">
+            <input type="video" id="teste" onkeypress="setPlay()">
+        </video>
+
+        <script>
+
+            var vid = document.getElementById("player");
+              var video = document.getElementById("teste");
+              var velocity = 0 // 0 : parado; 1: play 0.5; 2: play 1.0; 3: play 1.5; 4: 2.0
+              // w: 119, s: 115
+                const keyUp = 119
+                const keyDown = 115;
+
+            function mostrarTecla(){
+                console.log("O código da tecla pressionada foi: " + event.keyCode);
+                    console.log("O código da tecla pressionada foi: " + event.keyCode);
+
+                    if (event.keyCode == keyUp && velocity < 4){
+                        //setPlay();
+                        velocity = velocity+1;
+                    } 
+                    if (event.keyCode == keyDown && velocity > 0){
+                        //setPlay();
+                        velocity = velocity-1;
+                    } 
+
+                    switch(velocity) {
+                      case 0:
+                        vid.pause();
+                        break;
+                      case 1:
+                        vid.play();
+                        vid.playbackRate += 0.5;
+                        break;
+                      case 2:
+                        vid.play();
+                        vid.playbackRate += 1.0;
+                        break;
+                      case 3:
+                        vid.play();
+                        vid.playbackRate += 1.5;
+                        break;
+                      case 4:
+                        vid.play();
+                        vid.playbackRate += 2.0;
+                        break;
+                      default:
+                        vid.pause();
+                    }    
+              }
+            document.body.onkeypress = mostrarTecla;
+
+        </script> 
+    </body> 
+</html>
