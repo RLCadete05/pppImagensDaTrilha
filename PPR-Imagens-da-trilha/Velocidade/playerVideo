@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <title>Player de vídeo</title>
+    </head>
+    <body> 
+        <button onclick="setPlay()" type="button"> Play </button>
+        <button onclick="setPause()" type="button"> Pause </button onclick="play()">
+        <button onclick="setReiniciar()" type="button">Reiniciar</button onclick="play()">
+        <button onclick="getPlaySpeed()" type="button">Qual a velocidade do vídeo?</button>
+        <button onclick="setPlayLento()" type="button">Lento</button><br> 
+        <button onclick="setPlayRapido()" type="button">Rápido</button><br> 
+        <button onclick="setPlayNormal()" type="button">Normal</button><br> 
+
+        <video id="player" width="720" height="476" controls>
+        <source src="Best VR 360 Video.mp4" type="video/mp4">
+        <source src="Best VR 360 Video.ogg" type="video/ogg">
+        
+        </video>
+    <script>
+        var vid = document.getElementById("player");
+
+        function setPlay(){
+            vid.play();
+        }
+        function setPause(){
+            vid.pause(); 
+        }
+        function setReiniciar(){
+            vid.pause();
+            vid.currentTime = 0;
+        }
+        function getPlaySpeed() {   
+            alert(vid.playbackRate);
+            console.log(vid.playbackRate); 
+        } 
+        function setPlayLento() { 
+            vid.playbackRate = vid.playbackRate > 0.5? vid.playbackRate - 0.5: vid.playbackRate = 0.5; 
+        } 
+        function setPlayRapido(){
+            vid.playbackRate += 0.5; 
+        }
+        function setPlayNormal(){
+            vid.playbackRate = 1.0;
+        }
+    </script> 
+    </body> 
+</html>
