@@ -1,0 +1,40 @@
+#vi2{
+    position: relative;
+    text-align: center;
+    top: 0px;
+    margin-left: 400px;
+    /*margin-right: 60%;*/    
+    width: 40%;
+    height: 40%;
+}
+h1{
+    margin-left: 500px;
+    font-family: Roboto;
+    font-size: 26;
+    font-weight: 500;
+    color: #bdbdbd;
+ 
+}
+body{
+    background-color: #121212;
+}
+#options{
+    position: relative;
+    letter-spacing: 4px;
+    font-weight: 600;
+    display: inline-block;
+    letter-spacing: 5px;
+    font-size: 22px;
+    left: 400px;
+    margin: 50px;
+    font-family: Roboto;
+    cursor: pointer;
+    color: #bdbdbd;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#options:hover{
+    color: #121212;
+    background: #5a88d7; 
+}
