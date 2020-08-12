@@ -8,12 +8,11 @@
     height: 40%;
 }
 h1{
-    margin-left: 500px;
+    text-align: center;
     font-family: Roboto;
     font-size: 26;
     font-weight: 500;
     color: #bdbdbd;
- 
 }
 body{
     background-color: #121212;
@@ -25,7 +24,7 @@ body{
     display: inline-block;
     letter-spacing: 5px;
     font-size: 22px;
-    left: 400px;
+    left: 430px;
     margin: 50px;
     font-family: Roboto;
     cursor: pointer;
@@ -37,4 +36,22 @@ body{
 #options:hover{
     color: #121212;
     background: #5a88d7; 
+}
+#formLink{
+    text-decoration: none;
+    font-family: "Roboto";
+    font-size: 20px;
+    font-weight: 500;
+    color: #1155cc;
+    top: 1000px;
+}
+#textLink{
+    text-decoration: none;
+    font-family: "Roboto";
+    font-size: 20px;
+    font-weight: 500;
+    color: #bdbdbd;
+    top: 1000px; 
+    text-align: center;
+    /*margin-left: 100px;*/
 }
