@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vi2 - Virtual Tour</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 0px)" href="indexSmall.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-width: 1350px)" href="index.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
@@ -18,12 +19,18 @@
 
 <!-- Initialize Firebase -->
 <script src="/__/firebase/init.js"></script>
+<header>
         <img id="vi2" src="vi2.png">
         <h1>Escolha uma opção:</h1>
         
         <a id="options" href="running.html" >CORRIDA</a>
         <a id="options" href="bike.html">BICICLETA</a>
-        <p id="textLink">Esse é um protótipo de teste. Caso tenha interesse em conhecer nosso produto responda o formulário no <a id="formLink" href="https://docs.google.com/forms/d/e/1FAIpQLSeoaR-iqP9cH8QxD1dsxlA3f-mP4h4iPK3d9_qCuzUtUcyb3w/viewform?embedded=true">link.</a></p>
+        <footer>
+             <p id="textLink">Esse é um protótipo de teste. Caso tenha interesse em conhecer nosso produto responda o formulário no <a id="formLink" href="https://docs.google.com/forms/d/e/1FAIpQLSeoaR-iqP9cH8QxD1dsxlA3f-mP4h4iPK3d9_qCuzUtUcyb3w/viewform?embedded=true" target="_blank">link.</a></p>    
+        </footer>
+       
+</header>
+
 </script>
 </body>
 </html>
