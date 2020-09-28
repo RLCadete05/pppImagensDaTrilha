@@ -1,5 +1,5 @@
 header{
-    width: 500px;
+    width: auto;
     height: auto;
     text-align: center;
 
@@ -23,10 +23,10 @@ body{
     background-color: #121212;
 }
 #options{
-    position: relative;
     letter-spacing: 3px;
     font-weight: 600;
     display: inline-block;
+    flex-wrap: nowrap;
     text-align: center;
     font-size: 22px;
     /*left: 430px;*/
@@ -53,10 +53,10 @@ body{
     position: relative;
     text-decoration: none;
     font-family: "Roboto";
+    padding: 40px auto;
     font-size: 20px;
     font-weight: 500;
-    color: #bdbdbd;
-    top: 90px; 
+    color: #bdbdbd; 
     text-align: center;
     /*margin-left: 100px;*/
 }
