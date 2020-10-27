@@ -10,71 +10,68 @@
     <header>
             <iframe id="video" width="100%" height="100%" src="https://www.youtube.com/embed/VoQqCg69gU0?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
             frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div id="rectangle"> 
-                <div class="botoes">    
-                    <a href="running.html"><button class="buttons">RETURN</button></a>  
-                    <button class= "buttons" id="play-button">></button>
-                    <button class= "buttons" id="pause-button">||</button>
-                    <button class= "buttons" id="stop-button">|></button>
-                    <button class= "buttons" onclick="getPlaySpeed()" type="button">V</button>
-                    <div class="botoes2"> 
-                        <button class= "buttons" onclick="setPlayLento()" type="button">0.5x</button><br> 
-                        <button class= "buttons" onclick="setPlayRapido()" type="button">1.5x</button><br> 
-                        <button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> 
-                        <a href="running6.html"><button class="buttons">>></button></a>
-                    </div>
-                </div>
-            </div>
-            <script>
-                //Injetar script da API do YouTube
-                var tag = document.createElement('script');
-                tag.src = "https://www.youtube.com/player_api";
-                var firstScriptTag = document.getElementsByTagName('script')[0];
-                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-                //Variável global
-                var player;
-                //Essa função é chamada quando a API está pronta para uso
-                function onYouTubePlayerAPIReady() {
-                    //crie o player global a partir do iframe específico (#video)
-                    player = new YT.Player('video', {
-                        events: {
-                            //Chame esta função quando o player estiver pronto para usar
-                            'onReady': onPlayerReady
-                        }
-                    });
-                }
-                function onPlayerReady(event) {
-                    //Eventos de ligação
-                    var playButton = document.getElementById("play-button");
-                    playButton.addEventListener("click", function() {
-                        player.playVideo();
-                    });
-                    var pauseButton = document.getElementById("pause-button");
-                    pauseButton.addEventListener("click", function() {
-                        player.pauseVideo();
-                    });
-                    var stopButton = document.getElementById("stop-button");
-                    stopButton.addEventListener("click", function() {
-                        player.stopVideo();
-                    });
-                }
-                    function getPlaySpeed() {   
-                        alert(player.getPlaybackRate());
-                        console.log(player.getPlaybackRate()); 
-                    } 
-                    function setPlayLento() { 
-                        let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
-                        player.setPlaybackRate(playRate);
-                    } 
-                    function setPlayRapido(){
-                        let playRate =  player.getPlaybackRate()+0.5; 
-                        player.setPlaybackRate(playRate);
+            <section class="rectangle"> 
+                <a href="running.html"> <button class="buttons"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
+                <button class= "buttons" id="play-button"><img class="icons" src="../icons/play.svg" title="PLAY"></button>
+                <button class= "buttons" id="pause-button"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
+                <button class= "buttons" id="stop-button"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
+                <button class= "buttons" onclick="getPlayVelocity()" type="button"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
+                <button class= "buttons" onclick="setPlaySlow()" type="button"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
+                <button class= "buttons" onclick="setPlayFast()" type="button"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
+                <a href="running6.html"><button class="buttons"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
+                <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
+            </section>
+
+        <script>
+            //Injetar script da API do YouTube
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/player_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            //Variável global
+            var player;
+            //Essa função é chamada quando a API está pronta para uso
+            function onYouTubePlayerAPIReady() {
+                //crie o player global a partir do iframe específico (#video)
+                player = new YT.Player('video', {
+                    events: {
+                        //Chame esta função quando o player estiver pronto para usar
+                        'onReady': onPlayerReady
                     }
-                    function setPlayNormal(){
-                        let playRate = 1.0;
-                        player.setPlaybackRate(playRate);
-                    }
-            </script>
-        </header>
+                });
+            }
+            function onPlayerReady(event) {
+                //Eventos de ligação
+                var playButton = document.getElementById("play-button");
+                playButton.addEventListener("click", function() {
+                    player.playVideo();
+                });
+                var pauseButton = document.getElementById("pause-button");
+                pauseButton.addEventListener("click", function() {
+                    player.pauseVideo();
+                });
+                var stopButton = document.getElementById("stop-button");
+                stopButton.addEventListener("click", function() {
+                    player.stopVideo();
+                });
+            }
+                function getPlayVelocity() {   
+                    alert(player.getPlaybackRate());
+                    console.log(player.getPlaybackRate()); 
+                } 
+                function setPlaySlow() { 
+                    let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
+                    player.setPlaybackRate(playRate);
+                } 
+                function setPlayFast(){
+                    let playRate =  player.getPlaybackRate()+0.5; 
+                    player.setPlaybackRate(playRate);
+                }
+                function setPlayNormal(){
+                    let playRate = 1.0;
+                    player.setPlaybackRate(playRate);
+                }
+        </script>
+    </header>
 </body>
 </html>
