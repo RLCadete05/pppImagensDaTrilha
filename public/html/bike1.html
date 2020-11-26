@@ -15,7 +15,7 @@
             </p>
             <section class="rectangle"> 
                     <a href="bike.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-                    <button  id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="PLAY"></button>
+                    <button  id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
                     <button  id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
                     <button  id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
                     <button  onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
@@ -23,10 +23,12 @@
                     <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
                     <a href="bike2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
                     <button onclick= "openFullscreen();" id="overlayDesktop" style="z-index: 0; text-align: center;"><img class="icons" src="../icons/full-screen.svg" title="FULLSCREEN"></button>
+                    <button onclick="start()">Start</button>
                     <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
                 </section>
 
             <script>
+        
                 //Injetar script da API do YouTube
                 var tag = document.createElement('script');
                 tag.src = "https://www.youtube.com/player_api";
@@ -75,14 +77,28 @@
                         let playRate = 1.0;
                         player.setPlaybackRate(playRate);
                     }
+                //teste de fuhnção para expandir 
+                function ready() {
+                    const { type } = screen.orientation;
+                    console.log(`Fullscreen and locked to ${type}. Ready!`);
+                }
+
+                async function start() {
+                    await document.body.requestFullscreen();
+                    await screen.orientation.lock("landscape");
+                    ready();
+                }
+
                 //Function fullscreen
-                var elem = document.getElementById("video");
+             var elem = document.getElementById("video");
                 function openFullscreen() {
                     if (elem.requestFullscreen) {
                         elem.requestFullscreen();
-                    } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    // Safari 
+                    } else if (elem.webkitRequestFullscreen) { 
                         elem.webkitRequestFullscreen();
-                    } else if (elem.msRequestFullscreen) { /* IE11 */
+                    // IE11
+                    } else if (elem.msRequestFullscreen) { 
                         elem.msRequestFullscreen();
                     }
                 }
