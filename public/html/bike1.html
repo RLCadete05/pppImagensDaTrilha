@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bike 360</title>
     <link rel="stylesheet" type="text/css" href="../styles/video.css">
+        <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+
 </head>
 <body>
     <header>
             <iframe id="video" src="https://www.youtube.com/embed/Lg6YYMZzxVk?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            frameborder="0" rotation="0 90 0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
-                Maximize a tela para uma melhor experiência
+                Gire a tela para uma melhor experiência
             </p>
             <section class="rectangle"> 
                     <a href="bike.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
+                    <a href="bike.html"> <button class="overlayMobile" class="buttons"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
                     <button  id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
                     <button  id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
                     <button  id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
@@ -22,9 +25,9 @@
                     <button  onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
                     <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
                     <a href="bike2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
-                    <button onclick= "openFullscreen();" id="overlayDesktop" style="z-index: 0; text-align: center;"><img class="icons" src="../icons/full-screen.svg" title="FULLSCREEN"></button>
+                    <!--<button onclick= "openFullscreen();" id="overlayDesktop" style="z-index: 0; text-align: center;"><img class="icons" src="../icons/full-screen.svg" title="FULLSCREEN"></button>
                     <button onclick="start()">Start</button>
-                    <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
+                    <button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
                 </section>
 
             <script>
@@ -62,7 +65,7 @@
                     });
                 }
                     function getPlayVelocity() {   
-                        alert(player.getPlaybackRate());
+                        alert("Sua velocidade é " + player.getPlaybackRate());
                         console.log(player.getPlaybackRate()); 
                     } 
                     function setPlaySlow() { 
@@ -82,7 +85,7 @@
                     const { type } = screen.orientation;
                     console.log(`Fullscreen and locked to ${type}. Ready!`);
                 }
-
+                //screen.lockOrientation('landscape');
                 async function start() {
                     await document.body.requestFullscreen();
                     await screen.orientation.lock("landscape");
@@ -103,6 +106,30 @@
                     }
                 }
                
+                function browserSupports360 () {
+                // YouTube supports 360 videos in a limited set of browsers,
+                // see https://support.google.com/youtube/answer/6178631
+
+                var ua = navigator.userAgent;
+
+                // No mobile browser is supported at the moment
+                if (/Mobile/.test(ua) || /Tablet/.test(ua)) return false;
+
+                // Chrome >= 40
+                if (/Chrome\/[^123][0-9]/.test(ua) && !/Edge\//.test(ua) && !/OPR\//.test(ua)) return true;
+
+                // Firefox >= 40
+                if (/Firefox\/[^123][0-9]/.test(ua)) return true;
+
+                // Microsoft Edge
+                if (/Edge\//.test(ua)) return true;
+
+                // Opera >= 30
+                if (/OPR\/[^12][0-9]/.test(ua)) return true;
+
+                return false;
+                }
+
             </script>
         </header>
 </body>
