@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-            <iframe id="video" src="https://www.youtube.com/embed/Lg6YYMZzxVk?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
+            <iframe id="video" src="https://www.youtube.com/embed/Lg6YYMZzxVk?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
             frameborder="0" rotation="0 90 0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
                 Gire a tela para uma melhor experiência
@@ -24,6 +24,7 @@
                     <button  onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
                     <button  onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
                     <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
+                    <button id="music" class="overlayMobile"> <img class="icons" src="../icons/music.svg" title="MÚSICA"> <audio autoplay><source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3"></audio> </button>
                     <a href="bike2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
                     <!--<button onclick= "openFullscreen();" id="overlayDesktop" style="z-index: 0; text-align: center;"><img class="icons" src="../icons/full-screen.svg" title="FULLSCREEN"></button>
                     <button onclick="start()">Start</button>
@@ -80,6 +81,9 @@
                         let playRate = 1.0;
                         player.setPlaybackRate(playRate);
                     }
+                if("click" == playButton){
+                    getElementById("music".autoplay)
+                }
                 //teste de fuhnção para expandir 
                 function ready() {
                     const { type } = screen.orientation;

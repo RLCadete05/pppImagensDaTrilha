@@ -22,7 +22,7 @@ h1{
 body{
     background-color: #121212;
 }
-#options{
+#options {
     position: relative;
     letter-spacing: 3px;
     font-weight: 600;
@@ -38,6 +38,11 @@ body{
     border-radius: 10px;
     text-decoration: none;
 }
+
+#optionsBike {
+    display: none;
+}
+
 #options:hover{
     color: #121212;
     background: #5a88d7; 
