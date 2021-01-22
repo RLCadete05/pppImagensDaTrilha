@@ -1,15 +1,12 @@
 header{
-    width: 1350px;
+    width: auto;
     height: auto;
     text-align: center;
-
 }
 #vi2{
     position: relative;
     text-align: center;
-    padding: 10px;
-    /*margin-left: 480px;
-    margin-right: 60%;*/    
+    padding: 10px;  
     width: 30%;
     height: 30%;
 }
@@ -38,11 +35,9 @@ body{
     border-radius: 10px;
     text-decoration: none;
 }
-
 #optionsBike {
     display: none;
 }
-
 #options:hover{
     color: #121212;
     background: #5a88d7; 
@@ -55,18 +50,15 @@ body{
     color: #1155cc;
 }
 #textLink{
-   
     font-family: "Roboto";
     font-size: 20px;
     font-weight: 500;
     color: #bdbdbd;
     margin-bottom: 10px;
     text-align: center;
-    /*margin-left: 100px;*/
 }
 
 /*smartphone*/
-
 @media screen and (max-width:1024px){
     header{
         width: auto;

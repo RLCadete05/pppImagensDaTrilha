@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <iframe id="video" width="100%" height="100%" src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
+        <iframe id="video" width="100%" height="100%" alt="Vídeo 360" src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
             Gire a tela para uma melhor experiência
@@ -23,14 +23,16 @@
             <button onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
             <button onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
             <button onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
-            <!--<button onclick="document.getElementById('music').play()"  class="overlayMobile"> <img class="icons" src="../icons/music.svg" title="MÚSICA"> <audio id="music"><source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3"></audio> </button>-->
-            <button><a onclick="playShow()" id="music-play"></a></button>
-            <button><a id="music-pause" onclick="pauseShow()" style="display:none;"></a></button>
+            <button class="overlayMobile">
+                <a onclick="playShow()" id="music-play"><i class="ion-ios-musical-notes" title="MÚSICA"></i></a> 
+                <a id="music-pause" onclick="pauseShow()" style="display:none;"><i class="ion-ios-musical-notes"></i></a>
+            </button>
             <a href="running2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
         </section>
+        
         <audio id="music-audio">
-            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="">
+            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="mp3">
         </audio>
 
         <script>
@@ -52,7 +54,6 @@
                 });
             }
             function onPlayerReady(event) {
-                //Eventos de ligação
                 var playButton = document.getElementById("play-button");
                 playButton.addEventListener("click", function() {
                     player.playVideo();
@@ -81,8 +82,8 @@
             function setPlayNormal(){
                 let playRate = 1.0;
                 player.setPlaybackRate(playRate);
-            }
-            //controle de audio
+            }   
+            //audio control
             var musicAudio = document.getElementById('music-audio');
             var playBtn = document.getElementById('music-play');
             var pauseBtn = document.getElementById('music-pause');
@@ -92,13 +93,37 @@
                 playBtn.style.display = "none";
                 pauseBtn.style.display = "inline-block";
             };
-
             var pauseShow = function() {
                 musicAudio.pause();
                 playBtn.style.display = "inline-block";
                 pauseBtn.style.display = "none";
             };
+            // Initializing values
+            var isPlaying = true;
 
+            // On video playing toggle values
+            video.onplaying = function() {
+                isPlaying = true;
+            };
+
+            // On video pause toggle values
+            video.onpause = function() {
+                isPlaying = false;
+            };
+
+            // Play video function
+            function playVid() {      
+                if (video.paused && !isPlaying) {
+                    video.play();
+                }
+            } 
+
+            // Pause video function
+            function pauseVid() {     
+                if (!video.paused && isPlaying) {
+                    video.pause();
+                }
+            }
         </script>
     </header>
 </body>

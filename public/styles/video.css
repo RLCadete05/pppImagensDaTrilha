@@ -11,7 +11,6 @@ header{
   text-align: center;
   
 }
-
 button {
   cursor: pointer;
   position: static;
@@ -28,12 +27,17 @@ button {
 button:hover{
   opacity: 100%;
 }
-.icons{
+.icons {
   width: 40px;
   height: 40px;
   opacity: 90%;
   text-align: center;
 }
+.ion-ios-musical-notes{
+  font-size: 52px;
+  text-align: center;
+}
+
 .rectangle{
   width:100%;
   height:70px;
@@ -62,9 +66,12 @@ button:hover{
     height: 25px;
  
   } 
+  .ion-ios-musical-notes{
+    font-size: 30px;
+  }
 }
 
-/*smartphone */
+/*smartphone rectangle */
 @media screen and (max-width:700px) and (orientation:portrait){
   /*header{
     transform: rotate(45deg);

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida 360</title>
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     <link rel="stylesheet" type="text/css" href="../styles/video.css">
 </head>
 <body>
     <header>
-        <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/Y9r4oyXs0fI?start=165?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
+        <iframe id="video" width="560" height="315" title="Vídeo 360" src="https://www.youtube.com/embed/Y9r4oyXs0fI?start=165?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
         frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
             Gire a tela para uma melhor experiência
@@ -22,9 +23,17 @@
             <button  onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
             <button  onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
             <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
+            <button class="overlayMobile">
+                <a onclick="playShow()" id="music-play"><i class="ion-ios-musical-notes" title="MÚSICA"></i></a> 
+                <a id="music-pause" onclick="pauseShow()" style="display:none;"><i class="ion-ios-musical-notes"></i></a>
+            </button>
             <a href="running1.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
         </section>
+
+        <audio id="music-audio">
+            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="mp3">
+        </audio>
 
         <script>
             //Injetar script da API do YouTube
@@ -59,22 +68,37 @@
                     player.stopVideo();
                 });
             }
-                function getPlayVelocity() {   
-                    alert("Sua velocidade é " + player.getPlaybackRate());
-                    console.log(player.getPlaybackRate()); 
-                } 
-                function setPlaySlow() { 
-                    let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
-                    player.setPlaybackRate(playRate);
-                } 
-                function setPlayFast(){
-                    let playRate =  player.getPlaybackRate()+0.5; 
-                    player.setPlaybackRate(playRate);
-                }
-                function setPlayNormal(){
-                    let playRate = 1.0;
-                    player.setPlaybackRate(playRate);
-                }
+            function getPlayVelocity() {   
+                alert("Sua velocidade é " + player.getPlaybackRate());
+                console.log(player.getPlaybackRate()); 
+            } 
+            function setPlaySlow() { 
+                let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
+                player.setPlaybackRate(playRate);
+            } 
+            function setPlayFast(){
+                let playRate =  player.getPlaybackRate()+0.5; 
+                player.setPlaybackRate(playRate);
+            }
+            function setPlayNormal(){
+                let playRate = 1.0;
+                player.setPlaybackRate(playRate);
+            }
+            //audio control
+            var musicAudio = document.getElementById('music-audio');
+            var playBtn = document.getElementById('music-play');
+            var pauseBtn = document.getElementById('music-pause');
+
+            var playShow = function() {
+                musicAudio.play();
+                playBtn.style.display = "none";
+                pauseBtn.style.display = "inline-block";
+            };
+            var pauseShow = function() {
+                musicAudio.pause();
+                playBtn.style.display = "inline-block";
+                pauseBtn.style.display = "none";
+            };
         </script>
     </header>
 </body>
