@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida 360</title>
-    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+    <!--<link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>-->
     <link rel="stylesheet" type="text/css" href="../styles/video.css">
 </head>
 <body>
@@ -14,6 +14,9 @@
         <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
             Gire a tela para uma melhor experiência
         </p>
+        <audio id="music" autoplay>
+            <source src="../musics/Labrinth - Still Don’t Know My Name.mp3" type="mp3">
+        </audio>
         <section class="rectangle"> 
             <a href="running.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <a href="running.html"> <button class="overlayMobile" class="buttons"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
@@ -23,17 +26,19 @@
             <button onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
             <button onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
             <button onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
-            <button class="overlayMobile">
+            <!--<button class="overlayMobile">
                 <a onclick="playShow()" id="music-play"><i class="ion-ios-musical-notes" title="MÚSICA"></i></a> 
                 <a id="music-pause" onclick="pauseShow()" style="display:none;"><i class="ion-ios-musical-notes"></i></a>
-            </button>
+            </button>-->
+
+            <button onclick="document.getElementById('music').play()" type="button" class="overlayMobile"><img src="../icons/music.svg" title='MÚSICA'></button>
+            <button onclick="document.getElementById('music').pause()" type="button" class="overlayMobile"><img src="../icons/music.svg" title='MÚSICA'></button>
+    
             <a href="running2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
         </section>
         
-        <audio id="music-audio">
-            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="mp3">
-        </audio>
+   
 
         <script>
             //Injetar script da API do YouTube
@@ -83,7 +88,7 @@
                 let playRate = 1.0;
                 player.setPlaybackRate(playRate);
             }   
-            //audio control
+             /*//audio control
             var musicAudio = document.getElementById('music-audio');
             var playBtn = document.getElementById('music-play');
             var pauseBtn = document.getElementById('music-pause');
@@ -98,6 +103,26 @@
                 playBtn.style.display = "inline-block";
                 pauseBtn.style.display = "none";
             };
+            <video id="video" preload="none" src="https://example.com/file.mp4"></video>
+ 
+
+            // Show loading animation.
+            var playPromise = video.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                // Automatic playback started!
+                // Show playing UI.
+                // We can now safely pause video...
+                video.pause();
+                })
+                .catch(error => {
+                // Auto-play was prevented
+                // Show paused UI.
+                });
+            }
+
+           
             // Initializing values
             var isPlaying = true;
 
@@ -123,7 +148,7 @@
                 if (!video.paused && isPlaying) {
                     video.pause();
                 }
-            }
+            }*/
         </script>
     </header>
 </body>
