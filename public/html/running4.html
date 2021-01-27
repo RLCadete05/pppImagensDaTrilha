@@ -21,6 +21,9 @@
             <button  id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
             <button  id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
             <button  onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
+
+            <input type="button" id="button" onclick="setInterval(nameChoose, 2000);" value="Speed" class="overlayMobile"/>
+
             <button  onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
             <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
             <button class="overlayMobile">
@@ -98,6 +101,17 @@
                 playBtn.style.display = "inline-block";
                 pauseBtn.style.display = "none";
             };
+
+            function nameChoose() {
+                var number = Math.floor(Math.random() * 101);
+
+                if(document.getElementById("button").value == "") {
+                    document.getElementById("button").value = number;
+                } else {
+                    document.getElementById("button").value = number;
+                }
+            }
+            
         </script>
     </header>
 </body>
