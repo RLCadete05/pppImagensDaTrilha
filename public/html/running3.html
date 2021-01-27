@@ -80,21 +80,6 @@
                 let playRate = 1.0;
                 player.setPlaybackRate(playRate);
             }
-            //audio control
-            var musicAudio = document.getElementById('music-audio');
-            var playBtn = document.getElementById('music-play');
-            var pauseBtn = document.getElementById('music-pause');
-
-            var playShow = function() {
-                musicAudio.play();
-                playBtn.style.display = "none";
-                pauseBtn.style.display = "inline-block";
-            };
-            var pauseShow = function() {
-                musicAudio.pause();
-                playBtn.style.display = "inline-block";
-                pauseBtn.style.display = "none";
-            };
             var musicAudio = document.getElementById("music");
             var audioPlay = function() {
                 if (musicAudio.duration > 0 && !musicAudio.paused) {
