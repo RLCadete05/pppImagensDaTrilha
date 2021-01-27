@@ -12,7 +12,7 @@ header{
   
 }
 
-#button {
+button, input {
   cursor: pointer;
   position: static;
   text-align: center;
@@ -26,30 +26,15 @@ header{
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-button {
-  cursor: pointer;
-  position: static;
-  text-align: center;
-  border: 0;
-  margin: 10px 10px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #2D9CDB;
-  opacity: 80%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-button:hover{
+button, input:hover{
   opacity: 100%;
 }
+
+
 .icons {
   width: 40px;
   height: 40px;
   opacity: 90%;
-  text-align: center;
-}
-.ion-ios-musical-notes{
-  font-size: 52px;
   text-align: center;
 }
 
@@ -72,7 +57,7 @@ button:hover{
     width: 100%;
     height: 100%;
   }
-  button{
+  button, input{
     width: 45px;
     height: 45px; 
   }
@@ -97,7 +82,7 @@ button:hover{
     height: 40%;
     margin-top: 20px; 
    }
-  button{
+  button, input{
     width: 45px;
     height: 45px; 
   }

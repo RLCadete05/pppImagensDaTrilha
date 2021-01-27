@@ -14,28 +14,23 @@
             Gire a tela para uma melhor experiência
         </p>
         <audio id="music">
-            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="mp3">
+            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle"> 
             <a href="running.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-            <a href="running.html"> <button class="overlayMobile" class="buttons"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-            <button  id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
-            <button  id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
-            <button  id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
-            <button  onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
-
-            <input type="button" id="button" onclick="setInterval(nameChoose, 2000);" value="Speed" class="overlayMobile"/>
-
-            <button  onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
-            <button  onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
-            <button onclick="playAudio()" type="button" class="overlayMobile">play</button>
-            <button onclick="pauseAudio()" type="button" class="overlayMobile">pause</button>
+            <a href="running.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
+            <button id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
+            <button id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
+            <button id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
+            <button onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
+            <input id="speed-button" class="overlayMobile" onclick="setInterval(nameChoose, 2000);" value="Speed" type="button" title="VELOCIDADE EM TEMPO REAL"/>
+            <button onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
+            <button onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
+            <button onclick="audioPlay()" class="overlayMobile"><img class="icons" src="../icons/music.svg" title="MÚSICA"></button>
             <a href="running3.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
         </section>
 
-       
-        
         <script>
             //Injetar script da API do YouTube
             var tag = document.createElement('script');
@@ -84,25 +79,25 @@
                 let playRate = 1.0;
                 player.setPlaybackRate(playRate);
             }
-            var audioPlay = document.getElementById("music");
-
-            function playAudio(){
-                audioPlay.play();
-            }
-            function pauseAudio(){
-                audioPlay.pause();
-            } 
-
-            function nameChoose() {
-                var number = Math.floor(Math.random() * 101);
-
-                if(document.getElementById("button").value == "") {
-                    document.getElementById("button").value = number;
+            var musicAudio = document.getElementById("music");
+            var audioPlay = function() {
+                if (musicAudio.duration > 0 && !musicAudio.paused) {
+                    musicAudio.pause();
+                    innerHTML = "Pause";
                 } else {
-                    document.getElementById("button").value = number;
+                    musicAudio.play();
+                    innerHTML  = "Play";
                 }
             }
-            
+              function nameChoose() {
+                var number = Math.floor(Math.random() * 101);
+
+                if(document.getElementById("speed-button").value == "") {
+                    document.getElementById("speed-button").value = number;
+                } else {
+                    document.getElementById("speed-button").value = number;
+                }
+            }
         </script>
     </header>
 </body>
