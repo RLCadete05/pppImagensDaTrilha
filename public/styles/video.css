@@ -12,6 +12,10 @@ header{
   
 }
 
+#speed-button {
+  font-size: 150%;
+}
+
 button, input {
   cursor: pointer;
   position: static;
