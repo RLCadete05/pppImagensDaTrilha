@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corrida 360</title>
     <link rel="stylesheet" type="text/css" href="../styles/video.css">
+    <link rel="stylesheet" type="text/css" href="../styles/mediapipe.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.css" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.1/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.1/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.1/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.1/holistic.js" crossorigin="anonymous"></script>
+  
+    
 </head>
 <body>
-    <header>
-        <iframe id="video" width="100%" height="100%" title="Vídeo 360" src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
+    <div style="position: absolute; width: 100%; height: 100%" >
+        <iframe id="video" width="100%" height="100%" src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
             Gire a tela para uma melhor experiência
@@ -23,7 +31,7 @@
             <button id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
             <button id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
             <button onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>
-            <input id="speed-button" class="overlayMobile" onclick="setInterval(nameChoose, 2000);" value="V" type="button" title="VELOCIDADE EM TEMPO REAL"/>
+            <input id="speed-button" class="overlayMobile" value="Speed" type="button" title="VELOCIDADE EM TEMPO REAL"/>
             <button onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
             <button onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
             <button onclick="audioPlay()" class="overlayMobile"><img class="icons" src="../icons/music.svg" title="MÚSICA"></button>
@@ -90,15 +98,30 @@
                 }
             }
               function nameChoose() {
-                var number = Math.floor(Math.random() * 101);
-
-                if(document.getElementById("speed-button").value == "") {
-                    document.getElementById("speed-button").value = number;
-                } else {
-                    document.getElementById("speed-button").value = number;
-                }
+                document.getElementById("speed-button").value = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
             }
+            setInterval(nameChoose, 250);
         </script>
-    </header>
+    
+
+    <div class="container">
+        <video class="input_video"></video>
+        <canvas class="output_canvas" width="256px" height="144px"></canvas>
+        <div class="loading">
+          <div class="spinner"></div>
+          <div class="message">
+            Loading
+          </div>
+        </div>
+        <a class="abs logo" href="http://www.mediapipe.dev" target="_blank">
+          <div style="display: flex;align-items: center;bottom: 0;right: 10px;">
+            <span class="title">MediaPipe</span>
+          </div>
+        </a>
+      </div>
+      <div class="control-panel">
+      </div>
+      <script src="mediapipe.js" ></script>
+    </div>
 </body>
 </html>
