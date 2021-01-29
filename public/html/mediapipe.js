@@ -8,6 +8,17 @@ const controlsElement =
     document.getElementsByClassName('control-panel')[0];
 const canvasCtx = canvasElement.getContext('2d');
 
+// @jaderxnet Essa fila vai controlar a posição dos ombros e vai ficar acessível para todos;
+var filaPosicaoOmbros = [];
+// @jaderxnet Essa variável vai dizer quantas amostras vou usar para os cálculos
+var tamanhoAmostra = 20;
+// @jaderxnet Acessasndo local Storage para salvar dados
+var meuStorage = localStorage;
+meuStorage.setItem("desvioPadrao", 0.0);
+
+// @jaderxnet inicia amostragem se verdadeiro
+var comAmostragem = false;
+
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
 const fpsControl = new FPS();
@@ -50,6 +61,21 @@ function connect(ctx, connectors) {
   }
 }
 
+// @jaderxnet Função que calcula o Desvio Padrão da altura dos ombros na fila
+function desvioPadraoAmostra(){
+    let media = 0.0;
+    for(item of filaPosicaoOmbros) {
+        media = media + item;
+    }
+    media = media / filaPosicaoOmbros.length;
+    let desvioPadrao = 0.0;
+    for(item of filaPosicaoOmbros) {
+        desvioPadrao = desvioPadrao + Math.pow(item-media,2);
+    }
+    desvioPadrao = Math.sqrt(desvioPadrao/(filaPosicaoOmbros.length-1));
+    localStorage.setItem("desvioPadrao", desvioPadrao);
+}
+
 function onResults(results) {
   // Hide the spinner.
   document.body.classList.add('loaded');
@@ -59,6 +85,30 @@ function onResults(results) {
 
   // Update the frame rate.
   fpsControl.tick();
+
+  // @jaderxnet Adiciono a posição dos ombros na fila até o máximo que quero usar de amostra
+  if(results.poseLandmarks) {
+    filaPosicaoOmbros.push(results.poseLandmarks[11].y);  // @jaderxnet Ombro esquerdo
+    filaPosicaoOmbros.push(results.poseLandmarks[12].y);  // @jaderxnet Ombro direito
+  }
+  // @jaderxnet Quando a fila estiver completa o algorítimo começa a remover os primeiros da fila para manter o tamanho da lista
+  if(filaPosicaoOmbros.length > tamanhoAmostra){
+      // Calcula e atualiza o desvio padrão da fila
+      desvioPadraoAmostra();
+      comAmostragem = true;
+  }
+  
+  // @jaderxnet Retirada dois primeiros da fila se houver amostragem
+  if(comAmostragem){
+    filaPosicaoOmbros.shift();
+    filaPosicaoOmbros.shift();
+  }
+  
+  // @jaderxnet Espera fila zerar para alterar variável
+  if(comAmostragem && filaPosicaoOmbros.length == 0){
+      comAmostragem = false;
+      meuStorage.setItem("desvioPadrao", 0.0);
+  }
 
   // Draw the overlays.
   canvasCtx.save();
