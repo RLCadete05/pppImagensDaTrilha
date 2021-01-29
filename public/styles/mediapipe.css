@@ -31,12 +31,14 @@ body {
 .container {
   position: absolute;
   background-color: #596e73;
-  height: 144px;
-  width: 256px;
-  left: 0; 
-  top: 60%; 
+  height: 140px;
+  width: 250px;
+  right: 10px; 
+  top: 80%; 
   z-index: 2;
 }
+
+
 
 .input_video {
   position:relative;
@@ -51,8 +53,8 @@ body {
 
 .output_canvas {
   position:absolute;
-  height: 144px;
-  width: 256px;
+  height: 140px;
+  width: 250px;
   left: 0;
   top: 0px;
 }
@@ -77,8 +79,8 @@ body {
 
 .control-panel {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 5px;
+  top: 30%;
 }
 
 .loading {
@@ -93,8 +95,8 @@ body {
   justify-content: center;
   opacity: 1;
   transition: opacity 1s;
-  height: 144px;
-  width: 256px;
+  height: 140px;
+  width: 250px;
 
   .message {
     font-size: x-large;
@@ -122,4 +124,23 @@ body {
   text-align: center;
   font-size: 24px;
   position: absolute;
+}
+@media screen and (min-width:300px) and (orientation:portrait){
+  .container, .control-panel{
+    display: none;
+  }
+
+}
+
+/*smartphone rectangle*/
+@media screen and (min-height:320px) and (max-width:850px) and (orientation:landscape){
+  .control-panel{
+    top: 10%;
+    width: 30%;
+    height: 30%;
+  }
+  .container{
+    top: 60%;
+  }
+
 }
