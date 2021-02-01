@@ -30,6 +30,7 @@
             <button onclick="audioPlay()" class="overlayMobile"><img class="icons" src="../icons/music.svg" title="MÚSICA"></button>
             <a href="running2.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
+            <progress id="progress" max="100" value="0">Progress</progress>
         </section>
 
         <script>
@@ -49,6 +50,7 @@
                         'onReady': onPlayerReady
                     }
                 });
+                progressBar();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -98,6 +100,14 @@
                 } else {
                     document.getElementById("speed-button").value = number;
                 }
+            }
+
+            var progress = document.getElementById("progress");
+
+            function progressBar() {
+                setInterval(function () {
+                    progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
+                });
             }
         </script>
     </header>

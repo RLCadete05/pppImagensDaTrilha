@@ -24,6 +24,7 @@
         <audio id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
+        
         <section class="rectangle"> 
             <a href="running.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <a href="running.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
@@ -37,6 +38,7 @@
             <button onclick="audioPlay()" class="overlayMobile"><img class="icons" src="../icons/music.svg" title="MÚSICA"></button>
             <a href="running3.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
+            <progress id="progress" max="100" value="0">Progress</progress>
         </section>
 
         <script>
@@ -56,6 +58,7 @@
                         'onReady': onPlayerReady
                     }
                 });
+                progressBar();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -97,10 +100,18 @@
                     innerHTML  = "Play";
                 }
             }
-              function nameChoose() {
+            function nameChoose() {
                 document.getElementById("speed-button").value = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
             }
             setInterval(nameChoose, 250);
+
+            var progress = document.getElementById("progress");
+
+            function progressBar() {
+                setInterval(function () {
+                    progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
+                });
+            }
         </script>
     
 
