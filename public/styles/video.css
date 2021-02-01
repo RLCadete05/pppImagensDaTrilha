@@ -14,11 +14,9 @@ header{
   top: 0; 
   z-index: 1;
 }
-
 #speed-button {
   font-size: 150%;
 }
-
 button, input {
   cursor: pointer;
   position: static;
@@ -32,19 +30,15 @@ button, input {
   opacity: 80%;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
-
 button, input:hover{
   opacity: 100%;
 }
-
-
 .icons {
   width: 40px;
   height: 40px;
   opacity: 90%;
   text-align: center;
 }
-
 .rectangle{
   width:100%;
   height:70px;
@@ -57,7 +51,6 @@ button, input:hover{
   top:0;
   left:0;
 }
-
 @media screen and (min-height:320px) and (max-width:850px) and (orientation:landscape){
   #overlayDesktop{
     display: none;
@@ -79,7 +72,6 @@ button, input:hover{
     font-size: 30px;
   }
 }
-
 /*smartphone rectangle */
 @media screen and (max-width:700px) and (orientation:portrait){
   /*header{
@@ -105,7 +97,6 @@ button, input:hover{
     height: 230px;
     z-index: -1;
   }
-
 }
 /*tablet*/
 @media screen and (max-width:980px) and (orientation:portrait){
