@@ -10,17 +10,15 @@
 </head>
 <body>
     <header>
-        <div >
-        <iframe id="video1" width="100%" height="100%" alt="Vídeo 360" src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
+         
+        <iframe id="video" class="video1" width="100%" height="100%" alt="Vídeo 360" src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
 
-        <iframe id="video2" width="100%" height="100%" src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
+        <iframe id="video" class="video2" width="100%" height="100%" src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
-        <iframe id="video3"  width="100%" height="100%" title="Vídeo 360" src="https://www.youtube.com/embed/flkwTQ94k-w?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
-        </div>
-    
+        <iframe id="video" class="video3"  width="100%" height="100%" title="Vídeo 360" src="https://www.youtube.com/embed/flkwTQ94k-w?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1" 
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
         
         <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
             Gire a tela para uma melhor experiência
@@ -43,6 +41,11 @@
             <!--<button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
         </section>
 
+        <!--<a href="javascript:viewIframe('elemento', 'url')" id="url">Exibir Iframe</a>
+        <div id="elemento" style="display:none">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/QcIy9NiNbmo" frameborder="0" allowfullscreen></iframe>-->
+     
+
         <script>
             //Injetar script da API do YouTube
             var tag = document.createElement('script');
@@ -54,7 +57,7 @@
             //Essa função é chamada quando a API está pronta para uso
             function onYouTubePlayerAPIReady() {
                 //crie o player global a partir do iframe específico (#video)
-                player = new YT.Player('videos', {
+                player = new YT.Player('video', {
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
                         'onReady': onPlayerReady
@@ -110,20 +113,59 @@
                     document.getElementById("speed-button").value = number;
                 }
             }
-            var iFrame1 = document.body.querySelector("#video1");
-            var iFrame2 = document.body.querySelector("#video2");
-            var iFrame3 = document.body.querySelector("#video3");
+            //união de páginas 
 
+            /*var iFrame1 = document.body.querySelector("#video1");
+            var iFrame2 = document.body.querySelector("#video2");
+            //var iFrame3 = document.body.querySelector("#video3");
             var div_id = window.location.hash;
 
             iFrame2.onload = function(){ // aguarda o iframe2 carregar
             // insere a div no iframe visível
-            iFrame1.contentDocument.body.innerHTML = iFrame2.contentWindow.document.querySelector(div_id).outerHTML;
-            iFrame2.outerHTML = ''; // remove o iframe2 do DOM 
+                iFrame1.contentDocument.body.innerHTML = iFrame2.contentWindow.document.querySelector(div_id).outerHTML;
+                iFrame2.outerHTML = ''; // remove o iframe2 do DOM 
            
-            }
+            }*/
 
-    
+                /*var video1 = localStorage.getItem(src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                var video1 = localStorage.getItem(src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                var video1 = localStorage.getItem(src="https://www.youtube.com/embed/flkwTQ94k-w?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                */
+
+
+
+            if(localStorage.video1) {
+                document.getElementsByClassName('video1').value - localStorage.video1;
+            }
+            if(localStorage.video2) {
+                document.getElementsByClassName('video2').value - localStorage.video2;
+            }
+            if(localStorage.video3) {
+                document.getElementsByClassName('video3').value - localStorage.video3;
+            }
+            var pullVideo = function(){
+
+                var video1 = localStorage.getItem(src="https://www.youtube.com/embed/OI0oKS0HFiE?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                var video1 = localStorage.getItem(src="https://www.youtube.com/embed/0Mm9yfGRfzw?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                var video1 = localStorage.getItem(src="https://www.youtube.com/embed/flkwTQ94k-w?enablejsapi=1&html5=1&controls=0&showinfo=0&autoplay=1&rel=0&mute=1")
+                
+                /*var video1 = document.getElementsByClassName('video1').value;
+                var video2 = document.getElementsByClassName('video2').value;
+                var video3 = document.getElementsByClassName('video3').value;*/
+
+                localStorage.setItem('video1', video1);
+                localStorage.setItem('video2', video2);
+                localStorage.setItem('video3', video3);
+
+            };
+            document.onchange = save;
+
+
+
+
+            
+
+ 
         </script>
     </header>
 </body>
