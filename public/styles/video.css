@@ -40,7 +40,9 @@ button, input:hover{
   text-align: center;
 }
 .rectangle{
-  width:100%;
+  width:60%;
+  background-color: #2D9CDB;
+  opacity: 50%;
   height:70px;
   z-index: 1;
   display: flex;
