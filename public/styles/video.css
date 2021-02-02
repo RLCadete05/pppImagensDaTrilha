@@ -60,6 +60,8 @@ button, input:hover{
 
 }
 
+#tempo {text-align: right;}
+
 #progress{
   height: 25%;
   width: 80%;

@@ -22,7 +22,8 @@
         <audio id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
-        <section class="rectangle"> 
+        <section class="rectangle">
+            <div id="tempo"></div> 
             <a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <!--<a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <button id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
@@ -60,6 +61,7 @@
                     }
                 });
                 progressBar();
+                seconds();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -112,6 +114,23 @@
                 setInterval(function () {
                     progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
                 });
+            }
+
+            var segundos = 0;
+            var minutos = 0;
+
+            function seconds() {
+                document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
+                
+                if (segundos < 61){
+                    segundos++;
+                    setTimeout("seconds()", 1000);
+                }
+
+                if (segundos > 60) {
+                    segundos = 0;
+                    minutos++;
+                }
             }
         </script>
     
