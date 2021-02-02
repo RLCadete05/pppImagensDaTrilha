@@ -64,6 +64,20 @@ button, input:hover{
   height: 25%;
   width: 80%;
 }
+
+/* cor de background da barra */
+#progress::-webkit-progress-bar {
+  background-color: #fff
+}
+
+/* cor de background do valor de progresso */
+#progress::-webkit-progress-value {
+  background: rgba(45, 156, 219, 0.5);
+}
+
+#progress::-moz-progress-bar {
+  background: rgba(45, 156, 219, 0.5);
+}
 @media screen and (min-height:320px) and (max-width:850px) and (orientation:landscape){
   #overlayDesktop{
     display: none;
