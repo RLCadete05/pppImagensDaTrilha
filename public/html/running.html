@@ -111,9 +111,9 @@
 
             }*/
             
+            var speed = document.getElementById("speed-button").value;            
             function nameChoose() {
-                var speed = document.getElementById("speed-button");
-                speed.value = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
+                speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
             
