@@ -61,6 +61,7 @@ button, input:hover{
 }
 
 #tempo {text-align: right;}
+#distancia {text-align: center;}
 
 #progress{
   height: 25%;
