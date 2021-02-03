@@ -24,11 +24,10 @@
         </audio>
         <section class="rectangle">
             <div id="tempo"></div> 
-<<<<<<< HEAD
+
             <div id="distancia"></div>
-=======
             <!--<div id="steps"></div>-->
->>>>>>> 3dc7a46bae5b39635220a338f4666fa9278c878e
+
             <a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <!--<a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <button id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
@@ -70,7 +69,7 @@
                 time();
                 distanciaPercorrida();
             }
-            /*function onPlayerReady(event) {
+            function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
                 playButton.addEventListener("click", function() {
                     player.playVideo();
@@ -84,7 +83,7 @@
                     player.stopVideo();
                 });
             }
-            function getPlayVelocity() {   
+            /*function getPlayVelocity() {   
                 alert("Sua velocidade é " + player.getPlaybackRate());
                 console.log(player.getPlaybackRate()); 
             } 
@@ -109,17 +108,15 @@
                     musicAudio.play();
                     innerHTML  = "Play";
                 }
-<<<<<<< HEAD
-            }
+
+            }*/
+            
             function nameChoose() {
                 var speed = document.getElementById("speed-button");
                 speed.value = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
-=======
-            }*/
-            function nameChoose() {
-                document.getElementById("speed-button").value = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
->>>>>>> 3dc7a46bae5b39635220a338f4666fa9278c878e
+                return speed;
             }
+            
             setInterval(nameChoose, 250);
 
             var progress = document.getElementById("progress");
@@ -147,7 +144,6 @@
                 }
             }
 
-<<<<<<< HEAD
             var tempo = 0;
 
             function time () {
@@ -168,7 +164,6 @@
                 }
             }
 
-=======
             /*var step = 0.00083;
 
             var time = minutos; 
@@ -177,7 +172,6 @@
                 document.getElementById('steps').innerHTML = kilometer;
 
             }*/
->>>>>>> 3dc7a46bae5b39635220a338f4666fa9278c878e
         </script>
     
 
