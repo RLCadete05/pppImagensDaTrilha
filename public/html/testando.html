@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#pai { 
+			display: inline;
+			justify-content: center;        
+            align-items: center;
+            margin: 20px;
+	  	}
+	</style>
+</head>
+<body>
+<div id="pai">
+	<div id="tempo"></div>
+	<div id="distancia"></div>
+    <div id="velocidade"></div>
+    <div id="steps"></div>
+</div>
+
+<script type="text/javascript">
+
+	var speed = 0;
+	function veloc () {
+		var aceleracao = document.getElementById('velocidade');
+		aceleracao.innerHTML = speed;
+
+		if (speed < 1000) {
+			speed = speed + 1;
+			setTimeout("veloc()", 1000)
+		}
+		return aceleracao;
+	}
+
+	veloc();
+
+	var segundos = 0;
+	var minutos = 0;
+	function seconds() {
+	    document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
+	    
+	    if (segundos < 61){
+	        segundos++;
+	        setTimeout("seconds()", 1000);
+	    }
+
+	    if (segundos > 60) {
+	        segundos = 0;
+	        minutos++;
+	    }
+	}
+
+	seconds();
+
+	var tempo = 0;
+	function time () {
+	    if (tempo < 3600){
+	        tempo++;
+	        setTimeout("time()", 1000);
+	    }
+    }
+    //console.log( + 'min')
+	time();
+
+	var distancia = 0;
+	function distanciaPercorrida() {
+	    document.getElementById('distancia').innerHTML = distancia;
+
+	    if (distancia < 10000){
+	        distancia = tempo * speed;
+	        setTimeout("distanciaPercorrida()", 1000);
+	    }
+	}	
+    distanciaPercorrida();
+    
+
+    var step = 1.66;
+
+    function countSteps() {
+        kilometer = Math.round(step * speed);
+        setTimeout("countSteps()");
+        document.getElementById('steps').innerHTML = kilometer;
+
+    }
+    countSteps();
+</script>
+</body>
+</html>
