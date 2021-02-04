@@ -49,6 +49,7 @@ button, input:hover{
   margin-left: auto;
   margin-right: auto; 
   text-align: center;
+
   background: rgba(45, 156, 219, 0.5);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -59,8 +60,27 @@ button, input:hover{
   align-items: center; */
 
 }
+.rectangleRigth{
+  width: 20%;
+  height: 40%;
+  opacity: 90%;
+  z-index: 1;
+  float: right;
+  text-align: center;
 
-#tempo {text-align: right;}
+  display: flex;
+  text-align: center;
+  justify-content: center;          
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: rgba(45, 156, 219, 0.5);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+#tempo {text-align: right; font-size: 20px;
+}
 #distancia {text-align: center;}
 
 #progress{

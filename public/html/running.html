@@ -25,11 +25,13 @@
         <section class="rectangle">
             <div id="tempo"></div> 
             <div id="distancia"></div>
+
             <!--<div id="steps"></div>-->
+
             <div id="velocidade"></div>
 
-            <a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-            <!--<a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
+            <!--<a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
+            <a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <button id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
             <button id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
             <button id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
@@ -43,9 +45,14 @@
             <progress id="progress" max="100" value="0">Distância Percorrida</progress>
         </section>
 
-        <script>
-            var video1 = document.getElementById("video");
-            video1.src = localStorage.getItem("linkYoutube");
+        <section class="rectangleRigth">
+            <div id="steps"></div>
+
+        </section>
+
+        <script type="text/javascript">
+            var video = document.getElementById("video");
+            video.src = localStorage.getItem("linkYoutube");
 
 
             //Injetar script da API do YouTube
@@ -66,7 +73,9 @@
                 });
                 progressBar();
                 seconds();
-                time();
+                time();  
+                countSteps();
+
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -112,18 +121,15 @@
             var speed = 0;
 
             function velo () {
-                var bb = document.getElementById('velocidade');
-                bb.innerHTML = speed;
+                document.getElementById('velocidade').innerHTML = speed;
 
                 if (speed < 100) {
                     speed = speed + 2;
                 }
 
-                if (speed === 40) {
+                if (speed == 40) {
                     speed = 20;
                 }
-
-                return bb;
             }
 
             setInterval(velo, 1000)
@@ -136,8 +142,8 @@
             
             setInterval(valueChange, 250);*/
 
+            setInterval(nameChoose, 250);
             var progress = document.getElementById("progress");
-
             function progressBar() {
                 setInterval(function () {
                     progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
@@ -146,30 +152,28 @@
 
             var segundos = 0;
             var minutos = 0;
-
             function seconds() {
                 document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
-                
                 if (segundos < 61){
                     segundos++;
                     setTimeout("seconds()", 1000);
                 }
-
                 if (segundos > 60) {
                     segundos = 0;
                     minutos++;
                 }
             }
-
+            
             var tempo = 0;
-
             function time () {
                 if (tempo < 3600){
                     tempo++;
                     setTimeout("time()", 1000);
                 }
             }
+            time();
 
+            //função distancia
             var soma = 0;
             function distanciaPercorrida() {
                 soma = speed + soma;
@@ -177,14 +181,28 @@
             }
             setInterval(distanciaPercorrida, 1000);
 
-            /*var step = 0.00083;
+            //função fake de velocidadde
+            let distance = 0;
+            function veloc () {
+                let aceleracao = document.getElementById('velocidade');
+                aceleracao.innerHTML = distance;
+                if (distance < 1000) {
+                    distance = distance + 1;
+                    setTimeout("veloc()", 1000)
+                }
+                return aceleracao;
+            }
+            veloc();
 
-            var time = minutos; 
+
+            //função passos
+            let step = 1.66;
             function countSteps() {
-                kilometer = step * time 
-                document.getElementById('steps').innerHTML = kilometer;
+                passos = Math.round(step * distance);
+                setTimeout("countSteps()");
+                document.getElementById('steps').innerHTML = passos;
+            }
 
-            }*/
         </script>
     
 
