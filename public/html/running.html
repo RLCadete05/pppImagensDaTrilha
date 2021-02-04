@@ -24,9 +24,9 @@
         </audio>
         <section class="rectangle">
             <div id="tempo"></div> 
-
             <div id="distancia"></div>
             <!--<div id="steps"></div>-->
+            <div id="velocidade"></div>
 
             <a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
             <!--<a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
@@ -67,7 +67,6 @@
                 progressBar();
                 seconds();
                 time();
-                distanciaPercorrida();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -110,14 +109,32 @@
                 }
 
             }*/
+            var speed = 0;
+
+            function velo () {
+                var bb = document.getElementById('velocidade');
+                bb.innerHTML = speed;
+
+                if (speed < 100) {
+                    speed = speed + 2;
+                }
+
+                if (speed === 40) {
+                    speed = 20;
+                }
+
+                return bb;
+            }
+
+            setInterval(velo, 1000)
             
-            var speed = document.getElementById("speed-button").value;            
-            function nameChoose() {
+            /*var speed = document.getElementById("speed-button").value;            
+            function valueChange() {
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
             
-            setInterval(nameChoose, 250);
+            setInterval(valueChange, 250);*/
 
             var progress = document.getElementById("progress");
 
@@ -153,16 +170,12 @@
                 }
             }
 
-            
-            var distancia = 0;
+            var soma = 0;
             function distanciaPercorrida() {
-                document.getElementById('distancia').innerHTML = distancia;
-
-                if (distancia < 10000){
-                    distancia = speed * tempo;
-                    setTimeout("distanciaPercorrida()", 1000);
-                }
+                soma = speed + soma;
+                document.getElementById('distancia').innerHTML = soma;
             }
+            setInterval(distanciaPercorrida, 1000);
 
             /*var step = 0.00083;
 
