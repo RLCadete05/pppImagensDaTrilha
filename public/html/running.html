@@ -71,7 +71,7 @@
                 progressBar();
                 seconds();
                 time();
-                distanciaPercorrida();  
+                //distanciaPercorrida();  
                 countSteps();
 
             }
@@ -184,7 +184,7 @@
             let step = 1.66;
             function countSteps() {
                 passos = Math.round(step * distance);
-                setTimeout("countpassos()");
+                setTimeout("countSteps()");
                 document.getElementById('steps').innerHTML = passos;
             }
 
