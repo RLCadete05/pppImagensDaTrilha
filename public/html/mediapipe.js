@@ -21,7 +21,7 @@ var comAmostragem = false;
 
 // We'll add this to our control panel later, but we'll save it here so we can
 // call tick() each time the graph runs.
-const fpsControl = new FPS();
+//const fpsControl = new FPS();
 
 // Optimization: Turn off animated spinner after its hiding animation is done.
 const spinner = document.querySelector('.loading');
@@ -84,7 +84,7 @@ function onResults(results) {
   removeLandmarks(results);
 
   // Update the frame rate.
-  fpsControl.tick();
+  //fpsControl.tick();
 
   // @jaderxnet Adiciono a posição dos ombros na fila até o máximo que quero usar de amostra
   if(results.poseLandmarks) {
@@ -215,13 +215,13 @@ const camera = new Camera(videoElement, {
     onFrame: async () => {
       await pose.send({image: videoElement});
     },
-    width: 1280,
-    height: 720
+    width: 250,
+    height: 140
   });
   camera.start();
 
 // Present a control panel through which the user can manipulate the solution
-// options.
+/* options.
 new ControlPanel(controlsElement, {
       selfieMode: true,
       upperBodyOnly: true,
@@ -254,3 +254,4 @@ new ControlPanel(controlsElement, {
       //holistic.setOptions(options);
       pose.setOptions(options);
     });
+    */
