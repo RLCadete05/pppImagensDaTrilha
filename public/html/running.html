@@ -35,7 +35,7 @@
         <section class="rectangleRigth">
             <div id="steps"></div>
             <div id="calorias"></div>
-
+            <div id="minutesKilometer"></div>
         </section>
 
         <script type="text/javascript">
@@ -71,7 +71,7 @@
                 time();  
                 countSteps();
                 calori();
-
+                minutesPerKilometer();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -89,31 +89,24 @@
             }
 
             function velo () {
-
                 if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
                 } else {
                     let speed = parseInt(localStorage.getItem('velocidade'));
-
                     if (!speed) {
                         speed = 0;
                     }
-
                     document.getElementById('velocidade').innerHTML = speed;
-
                     if (speed < 100) {
                         speed = 16;
                     }
-
                     if (speed == 40) {
                         speed = 20;
                     }
-                    
                     let meuStorage = localStorage;
                     meuStorage.setItem("velocidade", speed);
                 } 
             }
-
             setInterval(velo, 1000)
             
             /*var speed = document.getElementById("speed-button").value;            
@@ -157,45 +150,62 @@
             time();
 
             //função distancia
-            var soma = 0;
             function distanciaPercorrida() {
                 let speed = parseInt(localStorage.getItem("velocidade"));
-                soma = speed + soma;
+                let soma = parseInt(localStorage.getItem("distancia"));
+                
+                if (! soma){
+                    soma = 0;
+                }
+                soma = (speed + soma);
+                localStorage.setItem("distancia", soma);
                 document.getElementById('distancia').innerHTML = soma;
             }
             setInterval(distanciaPercorrida, 1000);
 
-            //função passos
-            var step = 1.66;
+            /*var step = 0.82;
             function countSteps() {
                 let speed = parseInt(localStorage.getItem("velocidade"));
-                passos = Math.round(step * speed);
+                passos = Math.round(step * soma) ;
                 setTimeout("countSteps()");
-                document.getElementById('steps').innerHTML = passos;
-            }
+                document.getElementById('steps').innerHTML =  "Passos" + passos;
+            }*/
 
             //funçāo das calorias
             var calorias = 0;
-            /*function calori () {
-                let peso = 70; // massa corporal do atleta em kg
-                let speed = parseInt(localStorage.getItem('velocidade'));
-                calorias = calorias + ((speed * peso * 0,0175) / 60);
-
-                document.getElementById('calorias').innerHTML = "C " + calorias;
-            }
-            setInterval(calori, 1000);*/
-
             function calori() {
                 setInterval(function () {
                     let peso = 70; // massa corporal do atleta em kg
                     let speed = parseInt(localStorage.getItem('velocidade'));
+                    
                     speed = speed * 3,6;
-                    let calo = ((speed * peso * 0,0175) / 60);
+                    let calo = ((speed * peso * 0.0175) / 60).toFixed(2);
+                    calo = parseFloat(calo);
                     calorias = calorias + calo;
 
                     document.getElementById('calorias').innerHTML = "C " + calorias;                
                 }, 1000);
             }
+            
+            var somas = 0;
+            function minutesPerKilometer(){//tempo por ditancia
+                // tempo / distancia = segundos/m
+                let speed = parseInt(localStorage.getItem("velocidade"));
+                somas = (somas + speed) / 1000;
+                let minutes = tempo / 60;
+                minuteskm = (minutes * somas).toFixed(2); 
+                setTimeout("minutesPerKilometer()", 1000);
+                document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
+            }
+
+            //função passos
+            var step = 0.82;
+            function countSteps() {
+                let distancia = parseInt(localStorage.getItem("distancia"));
+                passos = Math.round(step * distancia);
+                document.getElementById('steps').innerHTML = "Passos" + passos;
+            }
+            setInterval(countSteps, 1000);
         </script>
     
     <div class="container">

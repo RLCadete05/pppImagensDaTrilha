@@ -67,6 +67,7 @@ button, input:hover{
   z-index: 1;
   float: right;
   text-align: center;
+  margin: 10px;
 
   display: inline;
   text-align: center;
