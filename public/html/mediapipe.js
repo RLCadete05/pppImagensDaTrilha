@@ -123,7 +123,7 @@ function onResults(results) {
       canvasCtx, results.poseLandmarks,
       {color: '#00FF00', fillColor: '#FF0000'});
 
-  // Hands...
+  /* Hands...
   drawConnectors(
       canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS,
       {color: '#00CC00'});
@@ -180,10 +180,10 @@ function onResults(results) {
                 ]]);
     }
   }
-
+*/
   canvasCtx.restore();
 }
-
+/*
 const holistic = new Holistic({locateFile: (file) => {
   return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.1/${file}`;
 }});
@@ -191,7 +191,7 @@ holistic.onResults(onResults);
 
 /**
  * Instantiate a camera. We'll feed each frame we receive into the solution.
- */
+ *
 const camera = new Camera(videoElement, {
   onFrame: async () => {
     await holistic.send({image: videoElement});
@@ -200,6 +200,25 @@ const camera = new Camera(videoElement, {
   height: 140
 });
 camera.start();
+*/
+
+
+const pose = new Pose({locateFile: (file) => {
+    return `https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.1/${file}`;
+  }});
+  pose.onResults(onResults);
+  
+/**
+ * Instantiate a camera. We'll feed each frame we receive into the solution.
+ */
+const camera = new Camera(videoElement, {
+    onFrame: async () => {
+      await pose.send({image: videoElement});
+    },
+    width: 1280,
+    height: 720
+  });
+  camera.start();
 
 // Present a control panel through which the user can manipulate the solution
 // options.
@@ -232,5 +251,6 @@ new ControlPanel(controlsElement, {
     ])
     .on(options => {
       videoElement.classList.toggle('selfie', options.selfieMode);
-      holistic.setOptions(options);
+      //holistic.setOptions(options);
+      pose.setOptions(options);
     });
