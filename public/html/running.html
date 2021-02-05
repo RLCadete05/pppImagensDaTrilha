@@ -48,6 +48,8 @@
                 } else {
                     localStorage.removeItem("velocidade");
                     localStorage.removeItem("distancia");
+                    localStorage.removeItem("minuto");
+
                 }
 
 
@@ -129,6 +131,8 @@
             var segundos = 0;
             var minutos = 0;
             function seconds() {
+                //let minutos = parseInt(localStorage.getItem("minuto"));
+      
                 document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
                 if (segundos < 61){
                     segundos++;
@@ -138,6 +142,8 @@
                     segundos = 0;
                     minutos++;
                 }
+            localStorage.setItem("minuto", minutos);
+
             }
             
             //funçāo do tempo em segundos sem parar
@@ -154,7 +160,6 @@
             function distanciaPercorrida() {
                 let speed = parseInt(localStorage.getItem("velocidade"));
                 let soma = parseInt(localStorage.getItem("distancia"));
-                
                 if (! soma){
                     soma = 0;
                 }
@@ -164,21 +169,15 @@
             }
             setInterval(distanciaPercorrida, 1000);
 
-            /*var step = 0.82;
-            function countSteps() {
-                let speed = parseInt(localStorage.getItem("velocidade"));
-                passos = Math.round(step * soma) ;
-                setTimeout("countSteps()");
-                document.getElementById('steps').innerHTML =  "Passos" + passos;
-            }
             
             function minutesPerKilometer(){
-                minuteskm = tempo/speed;
+                let minutos = parseInt(localStorage.getItem("minuto"));
+                minuteskm = minutos/speed;
                 setTimeout("minutesPerKilometer()");
                 document.getElementById("minutesKilometer").innerHTML = minuteskm;
             }
             
-            var somas = 0;
+           /* var somas = 0;
             function minutesPerKilometer(){//tempo por ditancia
                 // tempo / distancia = segundos/m
                 let speed = parseInt(localStorage.getItem("velocidade"));
@@ -194,7 +193,7 @@
             function countSteps() {
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 passos = Math.round(step * distancia);
-                document.getElementById('steps').innerHTML = "Passos" + passos;
+                document.getElementById('steps').innerHTML = "Passos: " + passos;
             }
             setInterval(countSteps, 1000);
 
