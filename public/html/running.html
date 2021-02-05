@@ -25,22 +25,8 @@
         <section class="rectangle">
             <div id="tempo"></div> 
             <div id="distancia"></div>
-
-            <!--<div id="steps"></div>-->
-
-            <div id="velocidade"></div>
-
-            <!--<a href="videos.html"> <button id="overlayDesktop" style="z-index: 0; text-align: center;"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-            <a href="videos.html"> <button class="overlayMobile"> <img class="icons" src="../icons/return.svg" title="RETORNAR"></button></a>
-            <button id="play-button" class="overlayMobile"><img class="icons" src="../icons/play.svg" title="REPRODUZIR"></button>
-            <button id="pause-button" class="overlayMobile"><img class="icons" src="../icons/pause.svg" title="PAUSAR"></button>
-            <button id="stop-button" class="overlayMobile"><img class="icons" src="../icons/restart.svg" title="REINICIAR"></button>
-            <button onclick="getPlayVelocity()" type="button" class="overlayMobile"><img class="icons" src="../icons/velocity.svg" title="VELOCIDADE"></button>-->
+            <div id="velocidade"></div>            
             <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>
-            <!--<button onclick="setPlaySlow()" type="button" class="overlayMobile"><img class="icons" src="../icons/turtle.svg" title="LENTO"></button>
-            <button onclick="setPlayFast()" type="button" class="overlayMobile"><img class="icons" src="../icons/fast.svg" title="RÁPIDO"></button>
-            <button onclick="audioPlay()" class="overlayMobile"><img class="icons" src="../icons/music.svg" title="MÚSICA"></button>-->
-            <!--<a href="running3.html"><button class="overlayMobile"><img class="icons" src="../icons/next.svg" title="PRÓXIMO VÍDEO"></button></a>
             <button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
             <progress id="progress" max="100" value="0">Distância Percorrida</progress>
         </section>
@@ -53,6 +39,13 @@
         <script type="text/javascript">
             var video = document.getElementById("video");
             video.src = localStorage.getItem("linkYoutube");
+
+            if (typeof(Storage) === "undefined") {
+                    console.log("Erro ao acessar o localStorage");
+                } else {
+                    localStorage.removeItem("velocidade");
+                    localStorage.removeItem("distancia");
+                }
 
 
             //Injetar script da API do YouTube
@@ -91,46 +84,31 @@
                     player.stopVideo();
                 });
             }
-            /*function getPlayVelocity() {   
-                alert("Sua velocidade é " + player.getPlaybackRate());
-                console.log(player.getPlaybackRate()); 
-            } 
-            function setPlaySlow() { 
-                let playRate = player.getPlaybackRate() > 0.5? player.getPlaybackRate()/2:  0.5; 
-                player.setPlaybackRate(playRate);
-            } 
-            function setPlayFast(){
-                let playRate =  player.getPlaybackRate()+0.5; 
-                player.setPlaybackRate(playRate);
-            }
-            function setPlayNormal(){
-                let playRate = 1.0;
-                player.setPlaybackRate(playRate);
-            }
-            var musicAudio = document.getElementById("music");
-            var audioPlay = function() {
-                if (musicAudio.duration > 0 && !musicAudio.paused) {
-                    musicAudio.pause();
-                    innerHTML = "Pause";
-                } else {
-                    musicAudio.play();
-                    innerHTML  = "Play";
-                }
-
-            }*/
-            var speed = 0;
 
             function velo () {
-                document.getElementById('velocidade').innerHTML = speed;
 
-                if (speed < 100) {
-                    speed = speed + 2;
-                }
+                if (typeof(Storage) === "undefined") {
+                    console.log("Erro ao acessar o localStorage");
+                } else {
+                    let speed = parseInt(localStorage.getItem('velocidade'));
 
-                if (speed == 40) {
-                    speed = 20;
-                }
-                
+                    if (!speed) {
+                        speed = 0;
+                    }
+
+                    document.getElementById('velocidade').innerHTML = speed;
+
+                    if (speed < 100) {
+                        speed = speed + 2;
+                    }
+
+                    if (speed == 40) {
+                        speed = 20;
+                    }
+                    
+                    let meuStorage = localStorage;
+                    meuStorage.setItem("velocidade", speed);
+                } 
             }
 
             setInterval(velo, 1000)
@@ -150,6 +128,7 @@
                 });
             }
 
+            //funcāo do contador de tempo
             var segundos = 0;
             var minutos = 0;
             function seconds() {
@@ -164,6 +143,7 @@
                 }
             }
             
+            //funçāo do tempo em segundos sem parar
             var tempo = 0;
             function time () {
                 if (tempo < 3600){
@@ -176,36 +156,22 @@
             //função distancia
             var soma = 0;
             function distanciaPercorrida() {
+                let speed = parseInt(localStorage.getItem("velocidade"));
                 soma = speed + soma;
                 document.getElementById('distancia').innerHTML = soma;
             }
             setInterval(distanciaPercorrida, 1000);
 
-            //função fake de velocidadde
-            let distance = 0;
-            function veloc () {
-                let aceleracao = document.getElementById('velocidade');
-                aceleracao.innerHTML = distance;
-                if (distance < 1000) {
-                    distance = distance + 1;
-                    setTimeout("veloc()", 1000)
-                }
-                return aceleracao;
-            }
-            veloc();
-
-
             //função passos
-            let step = 1.66;
+            var step = 1.66;
             function countSteps() {
-                passos = Math.round(step * distance);
+                let speed = parseInt(localStorage.getItem("velocidade"));
+                passos = Math.round(step * speed);
                 setTimeout("countSteps()");
                 document.getElementById('steps').innerHTML = passos;
             }
-
         </script>
     
-
     <div class="container">
         <video class="input_video"></video>
         <canvas class="output_canvas" width="250px" height="140px"></canvas>
