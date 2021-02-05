@@ -179,8 +179,7 @@
                     let speed = parseInt(localStorage.getItem('velocidade'));
                     
                     speed = speed * 3,6;
-                    let calo = ((speed * peso * 0.0175) / 60).toFixed(2);
-                    calo = parseFloat(calo);
+                    let calo = ((speed * peso * 0.0175) / 60);
                     calorias = calorias + calo;
 
                     document.getElementById('calorias').innerHTML = "C " + calorias;                
