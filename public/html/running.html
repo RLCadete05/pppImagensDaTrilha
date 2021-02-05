@@ -28,7 +28,8 @@
             <div id="distancia"></div>
             <div id="velocidade"></div>            
 
-            <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>
+            <!--<input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>
+            -->
             <progress id="progress" max="100" value="0">Distância Percorrida</progress>
         </section>
 
@@ -47,8 +48,9 @@
                 } else {
                     localStorage.removeItem("velocidade");
                     localStorage.removeItem("distancia");
-                }
+                    localStorage.removeItem("minuto");
 
+                }
 
             //Injetar script da API do YouTube
             var tag = document.createElement('script');
@@ -71,7 +73,7 @@
                 time();  
                 countSteps();
                 calori();
-                minutesPerKilometer();
+                timeByDistance();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -96,9 +98,9 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    document.getElementById('velocidade').innerHTML = speed;
+                    document.getElementById('velocidade').innerHTML = "Velocidade: " + speed;
                     if (speed < 100) {
-                        speed = 16;
+                        speed = speed + 2;
                     }
                     if (speed == 40) {
                         speed = 20;
@@ -114,7 +116,6 @@
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            
             setInterval(valueChange, 250);*/
 
             var progress = document.getElementById("progress");
@@ -128,6 +129,7 @@
             var segundos = 0;
             var minutos = 0;
             function seconds() {
+                //let minutos = parseInt(localStorage.getItem("minuto"));
                 document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
                 if (segundos < 60){
                     segundos++;
@@ -137,6 +139,10 @@
                     segundos = 0;
                     minutos++;
                 }
+                if (! minutos){
+                    minutos = 0;
+                }
+            localStorage.setItem("minuto", minutos);
             }
             
             //funçāo do tempo em segundos sem parar
@@ -153,23 +159,25 @@
             function distanciaPercorrida() {
                 let speed = parseInt(localStorage.getItem("velocidade"));
                 let soma = parseInt(localStorage.getItem("distancia"));
-                
                 if (! soma){
                     soma = 0;
                 }
                 soma = (speed + soma);
                 localStorage.setItem("distancia", soma);
-                document.getElementById('distancia').innerHTML = soma;
+                document.getElementById('distancia').innerHTML = "m/s: " + soma;
             }
             setInterval(distanciaPercorrida, 1000);
-
-            /*var step = 0.82;
-            function countSteps() {
-                let speed = parseInt(localStorage.getItem("velocidade"));
-                passos = Math.round(step * soma) ;
-                setTimeout("countSteps()");
-                document.getElementById('steps').innerHTML =  "Passos" + passos;
-            }*/
+            
+            //função de tempo por distancia
+            function timeByDistance(){
+                let minutos = localStorage.getItem("minuto");
+                let distancia = localStorage.getItem("distancia");
+                minuteskm = minutos / distancia;
+                localStorage.setItem("minuto", minutos);
+                document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
+                setTimeout(timeByDistance);
+            }
+            
 
             //funçāo das calorias
             var calorias = 0;
@@ -183,14 +191,13 @@
                     if (minutos != 0) {
                         document.getElementById('calorias').innerHTML = "Calorias " + calorias;                
                     }
-
                 }, 1000);
             }
             //links para calcular Calorias
             //https://nutritotal.com.br/pro/material/met-multiplos-de-equivalentes-metabolicos/#:~:text=Assim%2C%20a%20f%C3%B3rmula%20ser%C3%A1%3A,30%2F60%20%3D%20180%20kcal
             //http://globoesporte.globo.com/eu-atleta/saude/noticia/2013/09/esportes-que-mais-gastam-calorias-conheca-o-met-seu-aliado-na-dieta.html    
             
-            var somas = 0;
+           /* var somas = 0;
             function minutesPerKilometer(){//tempo por ditancia
                 // tempo / distancia = segundos/m
                 let speed = parseInt(localStorage.getItem("velocidade"));
@@ -199,14 +206,14 @@
                 minuteskm = (minutes * somas).toFixed(2); 
                 setTimeout("minutesPerKilometer()", 1000);
                 document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
-            }
+            }*/
 
             //função passos
             var step = 0.82;
             function countSteps() {
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 passos = Math.round(step * distancia);
-                document.getElementById('steps').innerHTML = "Passos" + passos;
+                document.getElementById('steps').innerHTML = "Passos: " + passos;
             }
             setInterval(countSteps, 1000);
         </script>
