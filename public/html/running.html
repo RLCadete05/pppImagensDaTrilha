@@ -117,18 +117,14 @@
 
             }*/
             var speed = 0;
-
             function velo () {
                 document.getElementById('velocidade').innerHTML = speed;
-
                 if (speed < 100) {
                     speed = speed + 2;
                 }
-
                 if (speed == 40) {
                     speed = 20;
                 }
-                
             }
 
             setInterval(velo, 1000)
