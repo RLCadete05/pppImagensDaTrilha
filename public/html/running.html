@@ -176,15 +176,19 @@
             function calori() {
                 setInterval(function () {
                     let peso = 70; // massa corporal do atleta em kg
-                    let speed = parseInt(localStorage.getItem('velocidade'));
-                    
-                    speed = speed * 3,6;
-                    let calo = ((speed * peso * 0.0175) / 60);
-                    calorias = calorias + calo;
+                    let MET = 13.5 //MET para corrida de 13,5 km/h ou 4.30 min/km                    
+                    let calo = (MET * peso * minutos/60);
+                    calorias = calo;
 
-                    document.getElementById('calorias').innerHTML = "C " + calorias;                
+                    if (minutos != 0) {
+                        document.getElementById('calorias').innerHTML = "Calorias " + calorias;                
+                    }
+
                 }, 1000);
             }
+            //links para calcular Calorias
+            //https://nutritotal.com.br/pro/material/met-multiplos-de-equivalentes-metabolicos/#:~:text=Assim%2C%20a%20f%C3%B3rmula%20ser%C3%A1%3A,30%2F60%20%3D%20180%20kcal
+            //http://globoesporte.globo.com/eu-atleta/saude/noticia/2013/09/esportes-que-mais-gastam-calorias-conheca-o-met-seu-aliado-na-dieta.html    
             
             var somas = 0;
             function minutesPerKilometer(){//tempo por ditancia
