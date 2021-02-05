@@ -27,16 +27,14 @@
             <div id="tempo"></div> 
             <div id="distancia"></div>
             <div id="velocidade"></div>            
-            <div id="velocidade"></div>
-
 
             <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>
-            <button class= "buttons" onclick="setPlayNormal()" type="button">1.0x</button><br> -->
             <progress id="progress" max="100" value="0">Distância Percorrida</progress>
         </section>
 
         <section class="rectangleRigth">
             <div id="steps"></div>
+            <div id="calorias"></div>
 
         </section>
 
@@ -72,6 +70,7 @@
                 seconds();
                 time();  
                 countSteps();
+                calori();
 
             }
             function onPlayerReady(event) {
@@ -103,7 +102,7 @@
                     document.getElementById('velocidade').innerHTML = speed;
 
                     if (speed < 100) {
-                        speed = speed + 2;
+                        speed = 16;
                     }
 
                     if (speed == 40) {
@@ -137,11 +136,11 @@
             var minutos = 0;
             function seconds() {
                 document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
-                if (segundos < 61){
+                if (segundos < 60){
                     segundos++;
                     setTimeout("seconds()", 1000);
                 }
-                if (segundos > 60) {
+                if (segundos == 60) {
                     segundos = 0;
                     minutos++;
                 }
@@ -173,6 +172,29 @@
                 passos = Math.round(step * speed);
                 setTimeout("countSteps()");
                 document.getElementById('steps').innerHTML = passos;
+            }
+
+            //funçāo das calorias
+            var calorias = 0;
+            /*function calori () {
+                let peso = 70; // massa corporal do atleta em kg
+                let speed = parseInt(localStorage.getItem('velocidade'));
+                calorias = calorias + ((speed * peso * 0,0175) / 60);
+
+                document.getElementById('calorias').innerHTML = "C " + calorias;
+            }
+            setInterval(calori, 1000);*/
+
+            function calori() {
+                setInterval(function () {
+                    let peso = 70; // massa corporal do atleta em kg
+                    let speed = parseInt(localStorage.getItem('velocidade'));
+                    speed = speed * 3,6;
+                    let calo = ((speed * peso * 0,0175) / 60);
+                    calorias = calorias + calo;
+
+                    document.getElementById('calorias').innerHTML = "C " + calorias;                
+                }, 1000);
             }
         </script>
     
