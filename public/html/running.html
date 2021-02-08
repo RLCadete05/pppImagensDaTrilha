@@ -152,8 +152,8 @@
             }
 
             //função distancia
-            function distanciaPercorrida() {
-                setInterval(function () { let speed = parseInt(localStorage.getItem("velocidade"));
+            function distanciaPercorrida() { 
+                let speed = parseInt(localStorage.getItem("velocidade"));
                 let soma = parseInt(localStorage.getItem("distancia"));
                 if (! soma){
                     soma = 0;
@@ -161,9 +161,8 @@
                 soma = (speed + soma) ;
                 localStorage.setItem("distancia", soma);
                 document.getElementById('distancia').innerHTML = soma + " M";
-                
-                }, 1000);
             }
+            setInterval(distanciaPercorrida, 1000);
             
             //função de tempo por distancia
             function timeByDistance() {
@@ -192,12 +191,11 @@
             //função passos
             var step = 0.82;
             function countSteps() {
-                setInterval(function () {
-                    let distancia = parseInt(localStorage.getItem("distancia"));
-                    passos = Math.round(step * distancia);
-                    document.getElementById('steps').innerHTML =  passos + " Passos";
-                }, 1000);
+                let distancia = parseInt(localStorage.getItem("distancia"));
+                passos = Math.round(step * distancia);
+                document.getElementById('steps').innerHTML =  passos + " Passos";
             }
+            setInterval(countSteps, 1000)
         </script>
     
     <div class="container">
