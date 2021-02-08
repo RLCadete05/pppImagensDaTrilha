@@ -42,11 +42,13 @@
         <script type="text/javascript">
             var video = document.getElementById("video");
             video.src = localStorage.getItem("linkYoutube");
-
+            
+            // @jaderxnet Acessasndo local Storage para salvar dados
             if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
                 } else {
                     localStorage.removeItem("velocidade");
+                    localStorage.removeItem("desvioPadrao");
                     localStorage.removeItem("distancia");
                     localStorage.removeItem("minuto");
 
@@ -90,7 +92,7 @@
                     player.stopVideo();
                 });
             }
-
+            
             function velo () {
                 if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
@@ -99,26 +101,18 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    document.getElementById('velocidade').innerHTML = speed + " M/s";
-                    if (speed < 100) {
-                        speed = speed + 2;
-                    }
-                    if (speed == 40) {
-                        speed = 20;
-                    }
-                    let meuStorage = localStorage;
-                    meuStorage.setItem("velocidade", speed);
+                    document.getElementById('velocidade').innerHTML = speed + " m/s";
+                    
                 } 
             }
-            setInterval(velo, 1000)
-            
+            setInterval(velo, 1000);
             /*var speed = document.getElementById("speed-button").value;            
             function valueChange() {
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            setInterval(valueChange, 250);*/
-
+            setInterval(valueChange, 250);
+            */
             var progress = document.getElementById("progress");
             function progressBar() {
                 setInterval(function () {
