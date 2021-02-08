@@ -73,7 +73,7 @@
                 time();  
                 countSteps();
                 calori();
-                timeByDistance();
+                //timeByDistance();
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -98,7 +98,7 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    document.getElementById('velocidade').innerHTML = speed + " m/s";
+                    document.getElementById('velocidade').innerHTML = speed + " M/s";
                     if (speed < 100) {
                         speed = speed + 2;
                     }
@@ -142,7 +142,8 @@
                 if (! minutos){
                     minutos = 0;
                 }
-            localStorage.setItem("minuto", minutos);
+            //localStorage.setItem("minuto", minutos);
+
             }
             
             //funçāo do tempo em segundos sem parar
@@ -153,6 +154,8 @@
                     setTimeout("time()", 1000);
                 }
             }
+            //localStorage.setItem("minuto", tempo);
+
             time();
 
             //função distancia
@@ -162,21 +165,23 @@
                 if (! soma){
                     soma = 0;
                 }
-                soma = (speed + soma);
+                soma = (speed + soma) ;
                 localStorage.setItem("distancia", soma);
-                document.getElementById('distancia').innerHTML = soma + " m";
+                document.getElementById('distancia').innerHTML = soma + " M";
             }
             setInterval(distanciaPercorrida, 1000);
             
             //função de tempo por distancia
             function timeByDistance(){
-                let minutos = localStorage.getItem("minuto");
-                let distancia = localStorage.getItem("distancia");
-                minuteskm = (minutos / distancia).toFixed(2);
-                localStorage.setItem("minuto", minutos);
-                document.getElementById("minutesKilometer").innerHTML =  minuteskm + " min/km";
-                setTimeout(timeByDistance);
+                //let minutos = localStorage.getItem("minuto");
+                //let minutes = tempo / 60;
+                let distancia = parseInt(localStorage.getItem("distancia"));
+                minuteskm = ((tempo / 60) / (distancia/1000)).toFixed(2);
+                //localStorage.setItem("minuto", minutos);
+                document.getElementById("minutesKilometer").innerHTML =  minuteskm + " Min/km";
+                //setTimeout(timeByDistance);
             }
+            setInterval(timeByDistance, 60000);
             
             //funçāo das calorias
             var calorias = 0;
