@@ -74,6 +74,7 @@
                 countSteps();
                 calori();
                 //timeByDistance();
+                
             }
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -129,7 +130,6 @@
             var segundos = 0;
             var minutos = 0;
             function seconds() {
-                //let minutos = parseInt(localStorage.getItem("minuto"));
                 document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
                 if (segundos < 60){
                     segundos++;
@@ -142,8 +142,6 @@
                 if (! minutos){
                     minutos = 0;
                 }
-            //localStorage.setItem("minuto", minutos);
-
             }
             
             //funçāo do tempo em segundos sem parar
@@ -154,8 +152,6 @@
                     setTimeout("time()", 1000);
                 }
             }
-            //localStorage.setItem("minuto", tempo);
-
             time();
 
             //função distancia
@@ -173,16 +169,14 @@
             
             //função de tempo por distancia
             function timeByDistance(){
-                //let minutos = localStorage.getItem("minuto");
                 //let minutes = tempo / 60;
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 minuteskm = ((tempo / 60) / (distancia/1000)).toFixed(2);
-                //localStorage.setItem("minuto", minutos);
                 document.getElementById("minutesKilometer").innerHTML =  minuteskm + " Min/km";
                 //setTimeout(timeByDistance);
             }
             setInterval(timeByDistance, 60000);
-            
+    
             //funçāo das calorias
             var calorias = 0;
             function calori() {
@@ -200,17 +194,6 @@
             //links para calcular Calorias
             //https://nutritotal.com.br/pro/material/met-multiplos-de-equivalentes-metabolicos/#:~:text=Assim%2C%20a%20f%C3%B3rmula%20ser%C3%A1%3A,30%2F60%20%3D%20180%20kcal
             //http://globoesporte.globo.com/eu-atleta/saude/noticia/2013/09/esportes-que-mais-gastam-calorias-conheca-o-met-seu-aliado-na-dieta.html    
-            
-           /* var somas = 0;
-            function minutesPerKilometer(){//tempo por ditancia
-                // tempo / distancia = segundos/m
-                let speed = parseInt(localStorage.getItem("velocidade"));
-                somas = (somas + speed) / 1000;
-                let minutes = tempo / 60;
-                minuteskm = (minutes * somas).toFixed(2); 
-                setTimeout("minutesPerKilometer()", 1000);
-                document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
-            }*/
 
             //função passos
             var step = 0.82;
