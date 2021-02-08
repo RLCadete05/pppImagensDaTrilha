@@ -48,8 +48,6 @@
                 } else {
                     localStorage.removeItem("velocidade");
                     localStorage.removeItem("distancia");
-                    localStorage.removeItem("minuto");
-
                 }
 
             //Injetar script da API do YouTube
@@ -73,7 +71,7 @@
                 time();  
                 countSteps();
                 calori();
-                //timeByDistance();
+                timeByDistance();
                 
             }
             function onPlayerReady(event) {
@@ -152,11 +150,10 @@
                     setTimeout("time()", 1000);
                 }
             }
-            time();
 
             //função distancia
             function distanciaPercorrida() {
-                let speed = parseInt(localStorage.getItem("velocidade"));
+                setInterval(function () { let speed = parseInt(localStorage.getItem("velocidade"));
                 let soma = parseInt(localStorage.getItem("distancia"));
                 if (! soma){
                     soma = 0;
@@ -164,18 +161,18 @@
                 soma = (speed + soma) ;
                 localStorage.setItem("distancia", soma);
                 document.getElementById('distancia').innerHTML = soma + " M";
+                
+                }, 1000);
             }
-            setInterval(distanciaPercorrida, 1000);
             
             //função de tempo por distancia
-            function timeByDistance(){
-                //let minutes = tempo / 60;
+            function timeByDistance() {
+                setInterval(function () {
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 minuteskm = ((tempo / 60) / (distancia/1000)).toFixed(2);
                 document.getElementById("minutesKilometer").innerHTML =  minuteskm + " Min/km";
-                //setTimeout(timeByDistance);
+                }, 60000);
             }
-            setInterval(timeByDistance, 60000);
     
             //funçāo das calorias
             var calorias = 0;
@@ -183,12 +180,9 @@
                 setInterval(function () {
                     let peso = 70; // massa corporal do atleta em kg
                     let MET = 13.5 //MET para corrida de 13,5 km/h ou 4.30 min/km                    
-                    let calo = (MET * peso * minutos/60);
+                    let calo = (MET * peso * minutos/60/60);
                     calorias = calo;
-
-                    if (minutos != 0) {
-                        document.getElementById('calorias').innerHTML = calorias + " Calorias";                
-                    }
+                    document.getElementById('calorias').innerHTML = calorias + " Calorias";                
                 }, 1000);
             }
             //links para calcular Calorias
@@ -198,11 +192,12 @@
             //função passos
             var step = 0.82;
             function countSteps() {
-                let distancia = parseInt(localStorage.getItem("distancia"));
-                passos = Math.round(step * distancia);
-                document.getElementById('steps').innerHTML =  passos + " Passos";
+                setInterval(function () {
+                    let distancia = parseInt(localStorage.getItem("distancia"));
+                    passos = Math.round(step * distancia);
+                    document.getElementById('steps').innerHTML =  passos + " Passos";
+                }, 1000);
             }
-            setInterval(countSteps, 1000);
         </script>
     
     <div class="container">
