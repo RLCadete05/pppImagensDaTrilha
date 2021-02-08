@@ -42,11 +42,13 @@
         <script type="text/javascript">
             var video = document.getElementById("video");
             video.src = localStorage.getItem("linkYoutube");
-
+            
+            // @jaderxnet Acessasndo local Storage para salvar dados
             if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
                 } else {
                     localStorage.removeItem("velocidade");
+                    localStorage.removeItem("desvioPadrao");
                     localStorage.removeItem("distancia");
                 }
 
@@ -88,7 +90,7 @@
                     player.stopVideo();
                 });
             }
-
+            
             function velo () {
                 if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
@@ -97,7 +99,7 @@
                     if (!speed) {
                         speed = 0;
                     }
-
+                    
                     let velocKilometer = speed * 3.6;
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
 
@@ -109,17 +111,17 @@
                     }
                     let meuStorage = localStorage;
                     meuStorage.setItem("velocidade", speed);
+                    
                 } 
             }
-            setInterval(velo, 1000)
-            
+            setInterval(velo, 1000);
             /*var speed = document.getElementById("speed-button").value;            
             function valueChange() {
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            setInterval(valueChange, 250);*/
-
+            setInterval(valueChange, 250);
+            */
             var progress = document.getElementById("progress");
             function progressBar() {
                 setInterval(function () {

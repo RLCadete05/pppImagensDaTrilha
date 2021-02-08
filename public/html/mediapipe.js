@@ -12,9 +12,6 @@ const canvasCtx = canvasElement.getContext('2d');
 var filaPosicaoOmbros = [];
 // @jaderxnet Essa variável vai dizer quantas amostras vou usar para os cálculos
 var tamanhoAmostra = 20;
-// @jaderxnet Acessasndo local Storage para salvar dados
-var meuStorage = localStorage;
-meuStorage.setItem("desvioPadrao", 0.0);
 
 // @jaderxnet inicia amostragem se verdadeiro
 var comAmostragem = false;
@@ -74,6 +71,7 @@ function desvioPadraoAmostra(){
     }
     desvioPadrao = Math.sqrt(desvioPadrao/(filaPosicaoOmbros.length-1));
     localStorage.setItem("desvioPadrao", desvioPadrao);
+    localStorage.setItem("velocidade", desvioPadrao*100);
 }
 
 function onResults(results) {
@@ -108,6 +106,7 @@ function onResults(results) {
   if(comAmostragem && filaPosicaoOmbros.length == 0){
       comAmostragem = false;
       meuStorage.setItem("desvioPadrao", 0.0);
+      meuStorage.setItem("velocidade", 0.0);
   }
 
   // Draw the overlays.
