@@ -47,9 +47,9 @@
             if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
                 } else {
-                    localStorage.removeItem("velocidade");
-                    localStorage.removeItem("desvioPadrao");
-                    localStorage.removeItem("distancia");
+                    localStorage.setItem("velocidade",0.0);
+                    localStorage.setItem("desvioPadrao",0.0);
+                    localStorage.setItem("distancia",0.0);
                 }
 
             //Injetar script da API do YouTube
@@ -93,20 +93,24 @@
 
             function controlaVideo () {
                 let speed = parseInt(localStorage.getItem('velocidade'));
-
-                if (speed < 5) {
-                    let playLow = 0.025;
-                    player.setPlaybackRate(playLow);
+                let playspeed = 0;
+                if (speed < 1) {
+                    playspeed = 0.025;
+                    player.setPlaybackRate(playspeed);
                 }
 
-                if (speed > 5 && speed < 10) {
-                    let playNormal = 1.0;
-                    player.setPlaybackRate(playNormal);
+                if (speed >= 1 && speed < 5) {
+                    playspeed = 1.0;
+                    player.setPlaybackRate(playspeed);
+                }
+                if (speed >= 1 && speed < 5) {
+                    playspeed = 1.5;
+                    player.setPlaybackRate(playspeed);
                 }
 
                 if (speed > 10) {
-                    let playFast = 2.0;
-                    player.setPlaybackRate(playFast);
+                    playspeed = 2.0;
+                    player.setPlaybackRate(playspeed);
                 }
             }
             setInterval(controlaVideo, 1000);
@@ -122,16 +126,6 @@
 
                     let velocKilometer = speed * 3.6;
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
-
-                    if (speed < 15) {
-                        speed = speed + 1;
-                    }
-                    if (speed == 15) {
-                        speed = 8;
-                    }
-                    let meuStorage = localStorage;
-                    meuStorage.setItem("velocidade", speed);
-                    
                 } 
             }
             setInterval(velo, 1000);
