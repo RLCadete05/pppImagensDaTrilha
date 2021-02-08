@@ -65,17 +65,22 @@
                 player = new YT.Player('video', {
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
-                        'onReady': onPlayerReady
+                        'onReady': onPlayerReady,
+                        //'onReady': progressBar,
+                        
                     }
+                    
                 });
-                progressBar();
+                time();
                 seconds();
-                time();  
+                progressBar();
                 countSteps();
                 calori();
                 //timeByDistance();
                 
             }
+
+
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
                 playButton.addEventListener("click", function() {
@@ -89,7 +94,10 @@
                 stopButton.addEventListener("click", function() {
                     player.stopVideo();
                 });
+                
             }
+            /*if (document.querySelector('#video')(this.getCurrentTime > 0 && !this.paused && !this.ended && this.readyState > 2)){
+                }*/
 
             function velo () {
                 if (typeof(Storage) === "undefined") {
@@ -152,7 +160,7 @@
                     setTimeout("time()", 1000);
                 }
             }
-            time();
+            time();  
 
             //função distancia
             function distanciaPercorrida() {
@@ -166,6 +174,7 @@
                 document.getElementById('distancia').innerHTML = soma + " M";
             }
             setInterval(distanciaPercorrida, 1000);
+
             
             //função de tempo por distancia
             function timeByDistance(){
