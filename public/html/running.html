@@ -17,21 +17,20 @@
     <div style="position: absolute; width: 100%; height: 100%" >
         <iframe id="video" width="100%" height="100%" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p id="overlayDesktop" style="z-index: 0; text-align: center; font-size: 20px;">
+        
+        <p id="overlayDesktop" style="top: 80%; text-align: center; font-size: 20px; color: #1D1919;">
             Gire a tela para uma melhor experiência
         </p>
+      
         <audio id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
-                
-                <div id="distancia" style="float:left; margin-top: 3%;"></div>
-                <div id="velocidade" ></div> 
-                <div id="tempo" style="float: right;"></div>     
-               <!--  <progress id="progress" max="100" value="0" style="margin-top: 6%; position: relative;">Distância Percorrida</progress>
-               <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
-     
-            
+            <div id="distancia" ></div>
+            <div id="velocidade" ></div> 
+            <div id="tempo" ></div>     
+            <progress id="progress" max="100" value="0" >Distância Percorrida</progress>
+            <!--  <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
         </section>
 
         <section class="rectangleRigth">
@@ -99,7 +98,7 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    document.getElementById('velocidade').innerHTML = "Velocidade: " + speed;
+                    document.getElementById('velocidade').innerHTML = speed + " m/s";
                     if (speed < 100) {
                         speed = speed + 2;
                     }
@@ -165,7 +164,7 @@
                 }
                 soma = (speed + soma);
                 localStorage.setItem("distancia", soma);
-                document.getElementById('distancia').innerHTML = "m/s: " + soma;
+                document.getElementById('distancia').innerHTML = soma + " m";
             }
             setInterval(distanciaPercorrida, 1000);
             
@@ -175,11 +174,10 @@
                 let distancia = localStorage.getItem("distancia");
                 minuteskm = (minutos / distancia).toFixed(2);
                 localStorage.setItem("minuto", minutos);
-                document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
+                document.getElementById("minutesKilometer").innerHTML =  minuteskm + " min/km";
                 setTimeout(timeByDistance);
             }
             
-
             //funçāo das calorias
             var calorias = 0;
             function calori() {
@@ -190,7 +188,7 @@
                     calorias = calo;
 
                     if (minutos != 0) {
-                        document.getElementById('calorias').innerHTML = "Calorias " + calorias;                
+                        document.getElementById('calorias').innerHTML = calorias + " Calorias";                
                     }
                 }, 1000);
             }
@@ -214,12 +212,12 @@
             function countSteps() {
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 passos = Math.round(step * distancia);
-                document.getElementById('steps').innerHTML = "Passos: " + passos;
+                document.getElementById('steps').innerHTML =  passos + " Passos";
             }
             setInterval(countSteps, 1000);
         </script>
     
-    <!--<div class="container">
+    <div class="container">
         <video class="input_video"></video>
         <canvas class="output_canvas" width="250px" height="140px"></canvas>
         <div class="loading">
@@ -233,9 +231,9 @@
             <span class="title">MediaPipe</span>
           </div>
         </a>
-      </div>
+    </div>
       <script src="mediapipe.js" ></script>
-    </div>-->
+    </div>
 
 </body>
 </html>
