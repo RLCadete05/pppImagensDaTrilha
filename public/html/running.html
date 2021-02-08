@@ -149,7 +149,7 @@
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
                 } 
             }
-            setInterval(velo, 1000);
+            setInterval(velo, 1000/30);
             /*var speed = document.getElementById("speed-button").value;            
             function valueChange() {
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
@@ -206,7 +206,6 @@
             }
             setInterval(distanciaPercorrida, 1000);
 
-            
             //função de tempo por distancia
             function timeByDistance() {
                 setInterval(function () {
