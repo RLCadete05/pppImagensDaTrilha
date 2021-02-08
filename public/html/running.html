@@ -97,12 +97,15 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    document.getElementById('velocidade').innerHTML = speed + " M/s";
-                    if (speed < 100) {
-                        speed = speed + 2;
+
+                    let velocKilometer = speed * 3.6;
+                    document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
+
+                    if (speed < 16) {
+                        speed = speed + 1;
                     }
-                    if (speed == 40) {
-                        speed = 20;
+                    if (speed == 16) {
+                        speed = 10;
                     }
                     let meuStorage = localStorage;
                     meuStorage.setItem("velocidade", speed);
@@ -159,8 +162,9 @@
                     soma = 0;
                 }
                 soma = (speed + soma) ;
+                kilometer = soma / 1000
                 localStorage.setItem("distancia", soma);
-                document.getElementById('distancia').innerHTML = soma + " M";
+                document.getElementById('distancia').innerHTML = kilometer + " km";
             }
             setInterval(distanciaPercorrida, 1000);
             
