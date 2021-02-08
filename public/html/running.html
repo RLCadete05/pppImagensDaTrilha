@@ -90,6 +90,26 @@
                     player.stopVideo();
                 });
             }
+
+            function controlaVideo () {
+                let speed = parseInt(localStorage.getItem('velocidade'));
+
+                if (speed < 5) {
+                    let playLow = 0.025;
+                    player.setPlaybackRate(playLow);
+                }
+
+                if (speed > 5 && speed < 10) {
+                    let playNormal = 1.0;
+                    player.setPlaybackRate(playNormal);
+                }
+
+                if (speed > 10) {
+                    let playFast = 2.0;
+                    player.setPlaybackRate(playFast);
+                }
+            }
+            setInterval(controlaVideo, 1000);
             
             function velo () {
                 if (typeof(Storage) === "undefined") {
@@ -99,15 +119,15 @@
                     if (!speed) {
                         speed = 0;
                     }
-                    
+
                     let velocKilometer = speed * 3.6;
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
 
-                    if (speed < 16) {
+                    if (speed < 15) {
                         speed = speed + 1;
                     }
-                    if (speed == 16) {
-                        speed = 10;
+                    if (speed == 15) {
+                        speed = 8;
                     }
                     let meuStorage = localStorage;
                     meuStorage.setItem("velocidade", speed);
