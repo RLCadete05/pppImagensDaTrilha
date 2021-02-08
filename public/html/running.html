@@ -24,13 +24,14 @@
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
-            <div id="tempo"></div> 
-            <div id="distancia"></div>
-            <div id="velocidade"></div>            
-
-            <!--<input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>
-            -->
-            <progress id="progress" max="100" value="0">Distância Percorrida</progress>
+                
+                <div id="distancia" style="float:left; margin-top: 3%;"></div>
+                <div id="velocidade" ></div> 
+                <div id="tempo" style="float: right;"></div>     
+               <!--  <progress id="progress" max="100" value="0" style="margin-top: 6%; position: relative;">Distância Percorrida</progress>
+               <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
+     
+            
         </section>
 
         <section class="rectangleRigth">
@@ -172,7 +173,7 @@
             function timeByDistance(){
                 let minutos = localStorage.getItem("minuto");
                 let distancia = localStorage.getItem("distancia");
-                minuteskm = minutos / distancia;
+                minuteskm = (minutos / distancia).toFixed(2);
                 localStorage.setItem("minuto", minutos);
                 document.getElementById("minutesKilometer").innerHTML = "min/km " + minuteskm;
                 setTimeout(timeByDistance);
@@ -218,7 +219,7 @@
             setInterval(countSteps, 1000);
         </script>
     
-    <div class="container">
+    <!--<div class="container">
         <video class="input_video"></video>
         <canvas class="output_canvas" width="250px" height="140px"></canvas>
         <div class="loading">
@@ -234,6 +235,7 @@
         </a>
       </div>
       <script src="mediapipe.js" ></script>
-    </div>
+    </div>-->
+
 </body>
 </html>
