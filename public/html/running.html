@@ -15,14 +15,14 @@
 </head>
 <body>
     <div style="position: absolute; width: 100%; height: 100%" >
-        <iframe id="video" width="100%" height="100%" 
+        <iframe  id="video" width="100%" height="100%" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
         <p id="overlayDesktop" style="top: 80%; text-align: center; font-size: 20px; color: #1D1919;">
             Gire a tela para uma melhor experiência
         </p>
       
-        <audio id="music">
+        <audio onplaying="myfunction()" id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
@@ -30,6 +30,7 @@
             <div id="velocidade" ></div> 
             <div id="tempo" ></div>     
             <progress id="progress" max="100" value="0" >Distância Percorrida</progress>
+            
             <!--<button onclick="playMusic()" >-->
             <!--  <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
         </section>
@@ -52,6 +53,8 @@
                     localStorage.setItem("desvioPadrao",0.0);
                     localStorage.setItem("distancia",0.0);
                     localStorage.setItem("tempo",0.0);
+                    localStorage.setItem("minutos",0.0);
+                    localStorage.setItem("segundos",0.0);
 
                 }
 
@@ -69,9 +72,26 @@
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
                         'onReady': onPlayerReady,     
+                        //'onPlayerReady': onPlayerReady,
+                        //'onReady': progressBar,
+                        'onStateChange': onPlayerStateChange
+                        
                     }
                 });
             }
+
+   
+            
+
+            //var videoRunning = document.getElementById("video");
+            //videoRunning.onplaying = onPlayerReady();
+            /*function myfunction(){ 
+                alert("funcionou");
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }*/
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -86,6 +106,8 @@
                 stopButton.addEventListener("click", function() {
                     player.stopVideo();
                 });
+            
+            }
 
                 time();
                 seconds();
@@ -95,6 +117,22 @@
                 timeByDistance();
                 playMusic();
 
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING && !done) {
+                setInterval(seconds, 1000);
+                setInterval(time, 1000);
+                setInterval(calori, 1000);
+                setInterval(progressBar, 1000);
+                setInterval(countSteps, 1000);
+                setInterval(timeByDistance, 1000);
+                setInterval(controlaVideo, 1000);
+                setInterval(velocidade, 1000);
+                setInterval(playMusic, 1000);
+                setInterval(distanciaPercorrida, 1000);
+            
+                done = true;
+                }
             }
 
             var musicAudio = document.getElementById("music");
@@ -107,6 +145,7 @@
                     innerHTML  = "Play";
                 }
             }
+            
                 
             function controlaVideo () {
                 let speed = parseInt(localStorage.getItem('velocidade'));
@@ -130,9 +169,9 @@
                     player.setPlaybackRate(playspeed);
                 }
             }
-            setInterval(controlaVideo, 1000);
-            
-            function velo () {
+
+            //funçāo da velocidade
+            function velocidade () {
                 if (typeof(Storage) === "undefined") {
                     console.log("Erro ao acessar o localStorage");
                 } else {
@@ -145,7 +184,6 @@
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
                 } 
             }
-            setInterval(velo, 1000/30);
             /*var speed = document.getElementById("speed-button").value;            
             function valueChange() {
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
@@ -161,34 +199,46 @@
             }
 
             //funcāo do contador de tempo
-            var segundos = 0;
-            var minutos = 0;
             function seconds() {
-                document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
+                let segundos = parseInt(localStorage.getItem('segundos'));
+                let minutos = parseInt(localStorage.getItem('minutos'));
+
+                if (!segundos) {
+                    segundos = 0;
+                }
+                if (!minutos) {
+                    minutos = 0;
+                }
+
                 if (segundos < 60){
                     segundos++;
-                    setTimeout("seconds()", 1000);
                 }
                 if (segundos == 60) {
                     segundos = 0;
                     minutos++;
-                }
-                if (! minutos){
-                    minutos = 0;
-                }
+                }   
+
+                localStorage.setItem('segundos', segundos);
+                localStorage.setItem('minutos', minutos);
+
+                document.getElementById('tempo').innerHTML = minutos + " : " + segundos;
+
             }
             
             //funçāo do tempo em segundos sem parar
+
             //var tempo = 0;
+ 
             function time () {
-                let tempo = parseInt(localStorage.getItem("tempo"));
+                let tempo = parseInt(localStorage.getItem('tempo'));
+                if (!tempo) {
+                    tempo = 0;
+                } 
                 if (tempo < 3600){
                     tempo++;
-                    setTimeout("time()", 1000);
                 }
                 localStorage.setItem("tempo", tempo);
             }
-            //time();  
 
             //função distancia
             function distanciaPercorrida() { 
@@ -202,28 +252,30 @@
                 localStorage.setItem("distancia", soma);
                 document.getElementById('distancia').innerHTML = kilometer + " km";
             }
-            setInterval(distanciaPercorrida, 1000);
 
             //função de tempo por distancia
             function timeByDistance() {
-                setInterval(function () {
                 let distancia = parseInt(localStorage.getItem("distancia"));
+                let tempo = parseInt(localStorage.getItem('tempo'));
                 minuteskm = ((tempo / 60) / (distancia/1000)).toFixed(2);
                 document.getElementById("minutesKilometer").innerHTML =  minuteskm + " Min/km";
-                }, 60000);
             }
+
     
             //funçāo das calorias
-            var calorias = 0;
+           
             function calori() {
-                setInterval(function () {
-                    let peso = 70; // massa corporal do atleta em kg
-                    let MET = 13.5 //MET para corrida de 13,5 km/h ou 4.30 min/km                    
-                    let calo = (MET * peso * tempo/60/60);
-                    calorias = calo;
-                    document.getElementById('calorias').innerHTML = calorias + " Calorias";                
-                }, 1000);
+                let peso = 70; // massa corporal do atleta em kg
+                let MET = 13.5 //MET para corrida de 13,5 km/h ou 4.30 min/km 
+                let tempo = parseInt(localStorage.getItem('tempo'));                   
+                let calo = (MET * peso * tempo/60/60);
+                if (!calorias) {
+                    calorias = 0;
+                }
+                calorias = calo;
+                document.getElementById('calorias').innerHTML = calorias + " Calorias";                
             }
+
             //links para calcular Calorias
             //https://nutritotal.com.br/pro/material/met-multiplos-de-equivalentes-metabolicos/#:~:text=Assim%2C%20a%20f%C3%B3rmula%20ser%C3%A1%3A,30%2F60%20%3D%20180%20kcal
             //http://globoesporte.globo.com/eu-atleta/saude/noticia/2013/09/esportes-que-mais-gastam-calorias-conheca-o-met-seu-aliado-na-dieta.html    
@@ -235,7 +287,6 @@
                 passos = Math.round(step * distancia);
                 document.getElementById('steps').innerHTML =  passos + " Passos";
             }
-            setInterval(countSteps, 1000)
         </script>
     
     <div class="container">
