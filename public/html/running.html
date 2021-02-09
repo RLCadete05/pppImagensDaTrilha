@@ -30,6 +30,7 @@
             <div id="velocidade" ></div> 
             <div id="tempo" ></div>     
             <progress id="progress" max="100" value="0" >Distância Percorrida</progress>
+            
             <!--<button onclick="playMusic()" >-->
             <!--  <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
         </section>
@@ -54,8 +55,6 @@
                     localStorage.setItem("tempo",0.0);
                     localStorage.setItem("minutos",0.0);
                     localStorage.setItem("segundos",0.0);
-
-
 
                 }
 
@@ -110,7 +109,7 @@
                 setInterval(velocidade, 1000);
                 setInterval(playMusic, 1000);
                 setInterval(distanciaPercorrida, 1000);
-
+            
                 done = true;
                 }
             }
@@ -125,6 +124,7 @@
                     innerHTML  = "Play";
                 }
             }
+            playMusic();
                 
             function controlaVideo () {
                 let speed = parseInt(localStorage.getItem('velocidade'));
@@ -178,7 +178,6 @@
             }
 
             //funcāo do contador de tempo
-            
             function seconds() {
                 let segundos = parseInt(localStorage.getItem('segundos'));
                 let minutos = parseInt(localStorage.getItem('minutos'));
@@ -268,7 +267,7 @@
     
     <div class="container">
         <video class="input_video"></video>
-        <canvas class="output_canvas" width="250px" height="140px"></canvas>
+        <canvas class="output_canvas"></canvas>
         <div class="loading">
           <div class="spinner"></div>
           <div class="message">
