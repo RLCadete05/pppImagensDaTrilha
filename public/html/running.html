@@ -107,7 +107,7 @@
                 setInterval(timeByDistance, 1000);
                 setInterval(controlaVideo, 1000);
                 setInterval(velocidade, 1000);
-                setInterval(playMusic, 1000);
+                setTimeout(playMusic, 1000);
                 setInterval(distanciaPercorrida, 1000);
             
                 done = true;
@@ -124,7 +124,6 @@
                     innerHTML  = "Play";
                 }
             }
-            playMusic();
                 
             function controlaVideo () {
                 let speed = parseInt(localStorage.getItem('velocidade'));
