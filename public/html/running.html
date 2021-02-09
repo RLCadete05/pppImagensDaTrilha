@@ -22,7 +22,7 @@
             Gire a tela para uma melhor experiência
         </p>
       
-        <audio onplaying="myfunction()" id="music">
+        <audio id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
@@ -72,8 +72,6 @@
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
                         'onReady': onPlayerReady,
-                        'onPlayerReady': onPlayerReady,
-                        //'onReady': progressBar,
                         'onStateChange': onPlayerStateChange
                         
                     }
@@ -179,9 +177,7 @@
             */
             var progress = document.getElementById("progress");
             function progressBar() {
-                setInterval(function () {
-                    progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
-                });
+                progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
             }
 
             //funcāo do contador de tempo
