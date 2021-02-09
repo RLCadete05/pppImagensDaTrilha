@@ -51,6 +51,8 @@
                     localStorage.setItem("velocidade",0.0);
                     localStorage.setItem("desvioPadrao",0.0);
                     localStorage.setItem("distancia",0.0);
+                    localStorage.setItem("tempo",0.0);
+
                 }
 
             //Injetar script da API do YouTube
@@ -66,16 +68,10 @@
                 player = new YT.Player('video', {
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
-                        'onReady': onPlayerReady,
-                        //'onReady': progressBar,
-                        
+                        'onReady': onPlayerReady,     
                     }
-                    
                 });
-             
-                
             }
-
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -183,14 +179,16 @@
             }
             
             //funçāo do tempo em segundos sem parar
-            var tempo = 0;
+            //var tempo = 0;
             function time () {
+                let tempo = parseInt(localStorage.getItem("tempo"));
                 if (tempo < 3600){
                     tempo++;
                     setTimeout("time()", 1000);
                 }
+                localStorage.setItem("tempo", tempo);
             }
-            time();  
+            //time();  
 
             //função distancia
             function distanciaPercorrida() { 
