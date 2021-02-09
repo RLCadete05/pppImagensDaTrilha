@@ -120,6 +120,9 @@
             
                 done = true;
                 }
+                if(this.ended){
+                    event.stopPropagation();
+                }
             }
 
             var musicAudio = document.getElementById("music");
