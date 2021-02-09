@@ -75,15 +75,17 @@
                         'onStateChange': onPlayerStateChange
                         
                     }
-                    
                 });
-   
             }
-
+            
             //var videoRunning = document.getElementById("video");
             //videoRunning.onplaying = onPlayerReady();
             /*function myfunction(){ 
                 alert("funcionou");
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
             }*/
 
             function onPlayerReady(event) {
@@ -173,7 +175,6 @@
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            setInterval(valueChange, 250);
             */
             var progress = document.getElementById("progress");
             function progressBar() {
@@ -207,12 +208,12 @@
 
             }
             
-            //funçāo do tempo em segundos sem parar
+            //funçāo do tempo em segundos sem parar 
             function time () {
                 let tempo = parseInt(localStorage.getItem('tempo'));
                 if (!tempo) {
                     tempo = 0;
-                }
+                } 
                 if (tempo < 3600){
                     tempo++;
                 }
