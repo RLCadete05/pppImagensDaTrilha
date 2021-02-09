@@ -30,12 +30,14 @@ body {
 
 .container {
   position: absolute;
-  background-color: #596e73;
-  height: 30%;
-  width: 30%;
-  float: left;
-  margin: 10px ;
-  top: 65%; 
+  background-color: rgba(45, 156, 219, 0.5);
+  height: 140px;
+  width: 250px;
+  left: 10px;
+  bottom: 10px;
+  /*float: left;
+  margin: 8px ;
+  top: 69%;*/ 
   z-index: 2;
 }
 
@@ -134,17 +136,9 @@ body {
 }
 
 /*smartphone rectangle*/
-@media screen and (min-height:320px) and (max-width:850px) and (orientation:landscape){
-  .control-panel{
-    top: 10%;
-    width: 30%;
-    height: 30%;
+@media screen and (min-height:280px) and (max-width:850px) and (orientation:landscape){
+  .container {
+    width: 170px;
+    height: 120px;
   }
-  .container{
-    top: 60%;
-    width: 25%;
-    height: 30%;
-
-  }
-
 }
