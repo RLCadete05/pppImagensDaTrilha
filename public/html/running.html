@@ -22,8 +22,8 @@
             Gire a tela para uma melhor experiência
         </p>
       
-        <audio onplaying="myfunction()" id="music">
-            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
+        <audio id="music">
+            <source src="../musics/Red Hot Chili Peppers - Californication.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
             <div id="distancia" ></div>
@@ -72,27 +72,10 @@
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
                         'onReady': onPlayerReady,     
-                        //'onPlayerReady': onPlayerReady,
-                        //'onReady': progressBar,
                         'onStateChange': onPlayerStateChange
-                        
                     }
                 });
             }
-
-   
-            
-
-            //var videoRunning = document.getElementById("video");
-            //videoRunning.onplaying = onPlayerReady();
-            /*function myfunction(){ 
-                alert("funcionou");
-            }
-
-            function onPlayerReady(event) {
-<<<<<<< HEAD
-                event.target.playVideo();
-            }*/
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
