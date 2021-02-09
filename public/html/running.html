@@ -22,7 +22,7 @@
             Gire a tela para uma melhor experiência
         </p>
       
-        <audio onplaying="myfunction()" id="music">
+        <audio id="music">
             <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
@@ -72,20 +72,20 @@
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
                         'onReady': onPlayerReady,
-                        'onPlayerReady': onPlayerReady,
-                        //'onReady': progressBar,
                         'onStateChange': onPlayerStateChange
                         
                     }
-                    
                 });
-   
             }
-
+            
             //var videoRunning = document.getElementById("video");
             //videoRunning.onplaying = onPlayerReady();
             /*function myfunction(){ 
                 alert("funcionou");
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
             }*/
 
             function onPlayerReady(event) {
@@ -178,13 +178,10 @@
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            setInterval(valueChange, 250);
             */
             var progress = document.getElementById("progress");
             function progressBar() {
-                setInterval(function () {
-                    progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
-                });
+                progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
             }
 
             //funcāo do contador de tempo
@@ -214,12 +211,12 @@
 
             }
             
-            //funçāo do tempo em segundos sem parar
+            //funçāo do tempo em segundos sem parar 
             function time () {
                 let tempo = parseInt(localStorage.getItem('tempo'));
                 if (!tempo) {
                     tempo = 0;
-                }
+                } 
                 if (tempo < 3600){
                     tempo++;
                 }
