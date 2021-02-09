@@ -30,6 +30,7 @@
             <div id="velocidade" ></div> 
             <div id="tempo" ></div>     
             <progress id="progress" max="100" value="0" >Distância Percorrida</progress>
+            
             <!--<button onclick="playMusic()" >-->
             <!--  <input id="speed-button" class="overlayMobile" value="0" type="button" title="VELOCIDADE EM TEMPO REAL"/></br>-->
         </section>
@@ -76,6 +77,8 @@
                 
             }
 
+            var videoRunning = document.getElementById("video");
+            videoRunning.onplaying = onPlayerReady();
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -97,7 +100,7 @@
                 countSteps();
                 calori();
                 timeByDistance();
-                playMusic();
+                
 
             }
 
@@ -111,6 +114,7 @@
                     innerHTML  = "Play";
                 }
             }
+            playMusic();
                 
             function controlaVideo () {
                 let speed = parseInt(localStorage.getItem('velocidade'));
