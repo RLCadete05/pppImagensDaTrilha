@@ -113,13 +113,14 @@
                 /*if(this.ended){
                     break done
                     //event.stopPropagation();
+                      if(this.ended){
+                    clearInterval(countSteps());
+                    //event.stopPropagation();
+                } 
                 }*/
                 if(player.getPlayerState == -1 || 0 || 2 ){
 
-                if(this.ended){
-                    clearInterval(countSteps());
-                    //event.stopPropagation();
-                }
+             
             }
 
             var musicAudio = document.getElementById("music");
