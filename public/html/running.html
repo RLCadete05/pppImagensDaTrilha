@@ -24,7 +24,7 @@
         </p>
       
         <audio id="music">
-            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
+            <source src="../musics/Red Hot Chili Peppers - Californication.mp3" type="audio/mpeg">
         </audio>
         <section class="rectangle">
             <div id="distancia" ></div>
@@ -72,22 +72,11 @@
                 player = new YT.Player('video', {
                     events: {
                         //Chame esta função quando o player estiver pronto para usar
-                        'onReady': onPlayerReady,
+                        'onReady': onPlayerReady,     
                         'onStateChange': onPlayerStateChange
-                        
                     }
                 });
-            }
-            
-            //var videoRunning = document.getElementById("video");
-            //videoRunning.onplaying = onPlayerReady();
-            /*function myfunction(){ 
-                alert("funcionou");
-            }
-
-            function onPlayerReady(event) {
-                event.target.playVideo();
-            }*/
+            }  
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -127,6 +116,9 @@
                 }*/
                 if(player.getPlayerState == -1 || 0 || 2 ){
 
+                if(this.ended){
+                    clearInterval(countSteps());
+                    //event.stopPropagation();
                 }
             }
 
