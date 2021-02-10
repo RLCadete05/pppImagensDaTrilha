@@ -23,7 +23,11 @@
         </p>
       
         <audio id="music">
+<<<<<<< HEAD
             <source src="../musics/Red Hot Chili Peppers - Californication.mp3" type="audio/mpeg">
+=======
+            <source src="../musics/R.E.M. - Losing My Religion Lyrics.mp3" type="audio/mpeg">
+>>>>>>> b073a978ad23d5026bd2ecd7090babf9aa4e4fd5
         </audio>
         <section class="rectangle">
             <div id="distancia" ></div>
@@ -75,7 +79,7 @@
                         'onStateChange': onPlayerStateChange
                     }
                 });
-            }
+            }  
 
             function onPlayerReady(event) {
                 var playButton = document.getElementById("play-button");
@@ -108,6 +112,10 @@
                 setInterval(distanciaPercorrida, 1000);
             
                 done = true;
+                }
+                if(this.ended){
+                    clearInterval(countSteps());
+                    //event.stopPropagation();
                 }
             }
 
@@ -164,13 +172,10 @@
                 speed = new Intl.NumberFormat('pt-IN', { maximumSignificantDigits: 2 }).format(localStorage.getItem("desvioPadrao")*1000);
                 return speed;
             }
-            setInterval(valueChange, 250);
             */
             var progress = document.getElementById("progress");
             function progressBar() {
-                setInterval(function () {
-                    progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
-                });
+                progress.value = Math.round((player.getCurrentTime() / player.getDuration()) * 100);
             }
 
             //funcāo do contador de tempo
@@ -200,10 +205,7 @@
 
             }
             
-            //funçāo do tempo em segundos sem parar
-
-            //var tempo = 0;
- 
+            //funçāo do tempo em segundos sem parar 
             function time () {
                 let tempo = parseInt(localStorage.getItem('tempo'));
                 if (!tempo) {
