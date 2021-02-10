@@ -56,6 +56,7 @@
                     localStorage.setItem("tempo",0.0);
                     localStorage.setItem("minutos",0.0);
                     localStorage.setItem("segundos",0.0);
+                    localStorage.setItem("Quilometro",0.0);
 
                 }
 
@@ -117,13 +118,18 @@
                     clearInterval(countSteps());
                     //event.stopPropagation();
                 } 
-                }*/
-                if(player.getPlayerState == -1 || 0 || 2 ){
+                }
 
              
+                if(player.getPlayerState == -1 || 0 || 2 ){}
+
+                if(this.ended){
+                    clearInterval(countSteps());
+                    //event.stopPropagation();
+                }*/
             }
 
-            var musicAudio = document.getElementById("music");
+            var musicAudio = document.getElementById("music").volume-=0.5;
             var playMusic = function() {
                 if (musicAudio.duration > 0 && !musicAudio.paused) {
                     musicAudio.pause();
@@ -135,23 +141,24 @@
             }
                        
             function controlaVideo () {
-                let speed = parseInt(localStorage.getItem('velocidade'));
+                //Pegando o valor da velocidade em km
+                let speed = parseInt(localStorage.getItem('Quilometro'));
                 let playspeed = 0;
                 if (speed < 1) {
                     playspeed = 0.025;
                     player.setPlaybackRate(playspeed);
                 }
 
-                if (speed >= 1 && speed < 5) {
+                if (speed >= 7 && speed < 26) {
                     playspeed = 1.0;
                     player.setPlaybackRate(playspeed);
                 }
-                if (speed >= 1 && speed < 5) {
+                if (speed >= 26 && speed < 38) {
                     playspeed = 1.5;
                     player.setPlaybackRate(playspeed);
                 }
 
-                if (speed > 10) {
+                if (speed > 38) {
                     playspeed = 2.0;
                     player.setPlaybackRate(playspeed);
                 }
@@ -168,6 +175,7 @@
                     }
 
                     let velocKilometer = speed * 3.6;
+                    localStorage.setItem("Quilometro", velocKilometer);
                     document.getElementById('velocidade').innerHTML = velocKilometer + " km/h";
                 } 
             }
