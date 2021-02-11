@@ -129,12 +129,14 @@
                 }*/
             }
 
-            var musicAudio = document.getElementById("music").volume-=0.5;
+            var musicAudio = document.getElementById("music");
             var playMusic = function() {
+
                 if (musicAudio.duration > 0 && !musicAudio.paused) {
                     musicAudio.pause();
                     innerHTML = "Pause";
                 } else {
+                    musicAudio.volume = 0.2;
                     musicAudio.play();
                     innerHTML  = "Play";
                 }
