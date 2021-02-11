@@ -94,6 +94,7 @@
                 });
             
             }
+
             var stopSeconds;
             var stopCalori;
             var stopCountStep;
@@ -127,18 +128,7 @@
                     clearInterval(stopTimeByDistance);
                     clearInterval(stopCountStep);
                     clearTimeout(stopPlayMusic);
-                }
-
-                /*if(this.ended){
-                    break done
-                    //event.stopPropagation();
-                }
-                if(player.getPlayerState == -1 || 0 || 2 ){}
-
-                if(this.ended){
-                    clearInterval(countSteps());
-                    //event.stopPropagation();
-                }*/
+                }          
             }
 
             var musicAudio = document.getElementById("music");
@@ -147,6 +137,7 @@
                     musicAudio.pause();
                     innerHTML = "Pause";
                 } else {
+                    musicAudio.volume = 0.2;
                     musicAudio.play();
                     innerHTML  = "Play";
                 }
