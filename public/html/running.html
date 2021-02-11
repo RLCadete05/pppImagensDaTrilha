@@ -94,23 +94,41 @@
                 });
             
             }
+            var stopSeconds;
+            var stopCalori;
+            var stopCountStep;
+            var stopTimeByDistance;
+            var stopVelocidade;
+            var stopPlayMusic;
+            var stopDistanciaPercorrida;
 
             var done = false;
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.PLAYING && !done) {
-                setInterval(seconds, 1000);
+                stopSeconds = setInterval(seconds, 1000);
                 setInterval(time, 1000);
-                setInterval(calori, 1000);
+                stopCalori = setInterval(calori, 1000);
                 setInterval(progressBar, 1000);
-                setInterval(countSteps, 1000);
-                setInterval(timeByDistance, 1000);
+                stopCountStep = setInterval(countSteps, 1000);
+                stopTimeByDistance = setInterval(timeByDistance, 1000);
                 setInterval(controlaVideo, 1000);
-                setInterval(velocidade, 1000);
-                setTimeout(playMusic, 1000);
-                setInterval(distanciaPercorrida, 1000);
+                stopVelocidade = setInterval(velocidade, 1000);
+                stopPlayMusic = setTimeout(playMusic, 1000);
+                stopDistanciaPercorrida = setInterval(distanciaPercorrida, 1000);
             
                 done = true;
                 }
+
+                if (event.data == YT.PlayerState.ENDED) {
+                    clearInterval(stopSeconds);
+                    clearInterval(stopCalori);
+                    clearInterval(stopVelocidade);
+                    clearInterval(stopDistanciaPercorrida);
+                    clearInterval(stopTimeByDistance);
+                    clearInterval(stopCountStep);
+                    clearTimeout(stopPlayMusic);
+                }
+
                 /*if(this.ended){
                     break done
                     //event.stopPropagation();
@@ -124,7 +142,7 @@
             }
 
             var musicAudio = document.getElementById("music");
-            var playMusic = function() {
+            function playMusic () {
                 if (musicAudio.duration > 0 && !musicAudio.paused) {
                     musicAudio.pause();
                     innerHTML = "Pause";
