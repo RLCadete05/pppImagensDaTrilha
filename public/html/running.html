@@ -94,34 +94,34 @@
                 });
             
             }
-
             var done = false;
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.PLAYING && !done) {
-                setInterval(seconds, 1000);
-                setInterval(time, 1000);
-                setInterval(calori, 1000);
-                setInterval(progressBar, 1000);
-                setInterval(countSteps, 1000);
-                setInterval(timeByDistance, 1000);
-                setInterval(controlaVideo, 1000);
-                setInterval(velocidade, 1000);
-                setTimeout(playMusic, 1000);
-                setInterval(distanciaPercorrida, 1000);
-            
-                done = true;
+                    setInterval(seconds, 1000);
+                    setInterval(time, 1000);
+                    setInterval(calori, 1000);
+                    setInterval(progressBar, 1000);
+                    setInterval(countSteps, 1000);
+                    setInterval(timeByDistance, 1000);
+                    setInterval(controlaVideo, 1000);
+                    setInterval(velocidade, 1000);
+                    setTimeout(playMusic, 1000);
+                    setInterval(distanciaPercorrida, 1000);
+                
+                    done = true;
                 }
-                /*if(this.ended){
-                    break done
-                    //event.stopPropagation();
-                      if(this.ended){
-                    clearInterval(countSteps());
-                    //event.stopPropagation();
-                } 
+                /*if(player.getPlayerState == -1 || 0 || 2 ){
+                    clearInterval(testeoculto);
                 }
 
-             
-                if(player.getPlayerState == -1 || 0 || 2 ){}
+                if(this.ended){
+                    break done
+                    //event.stopPropagation();
+                    if(this.ended){
+                    clearInterval(countSteps());
+                    //event.stopPropagation();
+                    } 
+                }
 
                 if(this.ended){
                     clearInterval(countSteps());
