@@ -147,12 +147,12 @@
                 //Pegando o valor da velocidade em km
                 let speed = parseInt(localStorage.getItem('Quilometro'));
                 let playspeed = 0;
-                if (speed < 1) {
+                if (speed < 10) {
                     playspeed = 0.025;
                     player.setPlaybackRate(playspeed);
                 }
 
-                if (speed >= 7 && speed < 26) {
+                if (speed >= 11 && speed < 26) {
                     playspeed = 1.0;
                     player.setPlaybackRate(playspeed);
                 }
