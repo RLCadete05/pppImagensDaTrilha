@@ -21,12 +21,14 @@
 .slides {
   display: flex;
   align-items: flex-end;
+  margin-top: 10%;
   
   overflow-x: auto;
   scroll-snap-type: x mandatory;   
   
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+
   
   /*
   scroll-snap-points-x: repeat(300px);
