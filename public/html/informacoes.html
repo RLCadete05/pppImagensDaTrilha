@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/informacoes.css">
+    <title>Resultados</title>
+</head>
+<body>
+    <h1>Os resultados da corrida foram: </h1>
+    <p id="t"></p>
+    <p id="p"></p>
+    <p id="c"></p>
+    <p id="q"></p>
+
+    <p id="dp"></p>
+    <p id="mq"></p>
+
+    <p id="textLink" rel="noreferrer">Esse é um protótipo de teste. Por favor, responda esse <a id="formLink" href="https://forms.gle/yV3qby7PRAsQ1pyq5" target="_blank">formulário </a>antes de usar este protótipo. </p>  
+
+    <script>
+        velocidade = localStorage.getItem("velocidade");
+        distancia = localStorage.getItem("distancia");
+        tempo = localStorage.getItem("tempo");
+        minutos = localStorage.getItem("minutos");
+        segundos = localStorage.getItem("segundos");
+        Quilometro = localStorage.getItem("Quilometro");
+        minuteK = localStorage.getItem("calorias");
+        passos = localStorage.getItem("passos");
+        calorias = localStorage.getItem("calorias");
+
+        
+        document.getElementById("dp").innerHTML = "Distância percorrida: " + distancia;
+        document.getElementById("q").innerHTML = "Quilômetros: " + Quilometro;
+        document.getElementById("t").innerHTML = "Tempo: " + tempo;
+        document.getElementById("c").innerHTML = "Calorias: " + calorias;
+        document.getElementById("p").innerHTML = "Passos: " + passos;
+        document.getElementById("mq").innerHTML = "Minutos por quilômetros: " + minuteK;
+
+    </script>
+
+</body>
+</html>
