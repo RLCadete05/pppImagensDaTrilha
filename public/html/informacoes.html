@@ -9,17 +9,17 @@
     <title>Resultados</title>
 </head>
 <body>
-    <h1>Os resultados da corrida foram: </h1>
-    <p id="t"></p>
-    <p id="p"></p>
-    <p id="c"></p>
-    <p id="q"></p>
-
-    <p id="dp"></p>
-    <p id="mq"></p>
-
-    <p id="textLink" rel="noreferrer">Esse é um protótipo de teste. Por favor, responda esse <a id="formLink" href="https://forms.gle/yV3qby7PRAsQ1pyq5" target="_blank">formulário </a>antes de usar este protótipo. </p>  
-
+    <div id="container">
+        <h1>Os resultados da corrida foram: </h1>
+        <p id="t"></p>
+        <p id="p"></p>
+        <p id="c"></p>
+        <p id="q"></p>
+        <p id="dp"></p>
+        <p id="mq"></p>
+        <p id="textLink" rel="noreferrer">Por favor, responda este <a id="formLink" href="https://forms.gle/SAcupky471MWagp87" target="_blank">formulário </a>após a corrida. </p>  
+    </div>
+ 
     <script>
         velocidade = localStorage.getItem("velocidade");
         distancia = localStorage.getItem("distancia");
@@ -27,14 +27,15 @@
         minutos = localStorage.getItem("minutos");
         segundos = localStorage.getItem("segundos");
         Quilometro = localStorage.getItem("Quilometro");
-        minuteK = localStorage.getItem("calorias");
+        minuteK = localStorage.getItem("minuteK");
         passos = localStorage.getItem("passos");
         calorias = localStorage.getItem("calorias");
+
 
         
         document.getElementById("dp").innerHTML = "Distância percorrida: " + distancia;
         document.getElementById("q").innerHTML = "Quilômetros: " + Quilometro;
-        document.getElementById("t").innerHTML = "Tempo: " + tempo;
+        document.getElementById("t").innerHTML = "Tempo: " + minutos + " : " + segundos;
         document.getElementById("c").innerHTML = "Calorias: " + calorias;
         document.getElementById("p").innerHTML = "Passos: " + passos;
         document.getElementById("mq").innerHTML = "Minutos por quilômetros: " + minuteK;
