@@ -6,6 +6,25 @@ body{
     font-size: 26;
     font-weight: 500;
 }
+#form{
+    position: relative;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 22px;
+    /*left: 430px;*/
+    margin: 20px;
+    font-family: Roboto;
+    cursor: pointer;
+    color: #bdbdbd;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+#form:hover{
+    color: #121212;
+    background: #5a88d7; 
+}
 .container{
     display: flex;
     max-width: 100%;
