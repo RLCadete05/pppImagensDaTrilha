@@ -14,8 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
     
 </head>
-<body>
-    <div style="position: absolute; width: 100%; height: 100%" >
+<body onload="mostrarPagina()">
+    <div id="corpoPagina" class="animate-bottom" style="position: absolute; width: 100%; height: 100%" >
+        <!---<button onclick="playVideo()">Iniciar Corrida</button>-->
+  
         <iframe  id="video" width="100%" height="100%" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
@@ -43,7 +45,19 @@
         <section class="closeButton">
             <a href="./informacoes.html">ENCERRAR CORRIDA</a>
         </section>
-        
+
+        <!--<section>
+             <div id="corpoPagina" class="animate-bottom">
+                <button onclick="playVideo()">Iniciar Corrida</button>
+            </div>
+        </section>-->
+
+    </div>
+        <section>
+            <div id="carregador"></div>
+            <p id="pCorrida" >Preparando corrida</p>
+        </section>
+
         <script type="text/javascript">
             var video = document.getElementById("video");
             video.src = localStorage.getItem("linkYoutube");
@@ -133,6 +147,20 @@
                     clearInterval(stopCountStep);
                     clearTimeout(stopPlayMusic);
                 }          
+            }
+            var tempoPagina;
+            function mostrarPagina() {
+                if(document.getElementsByClassName("loading").ontransitionend = true){
+                    tempoPagina = setTimeout(modificarPagina); 
+                }else {
+                    document.getElementById("carregador");
+                    document.getElementById("pCorrida");
+                }
+            }
+            function modificarPagina() {
+                document.getElementById("carregador").style.display = "none";
+                document.getElementById("pCorrida").style.display = "none";
+                document.getElementById("corpoPagina").style.display = "block";
             }
 
             var musicAudio = document.getElementById("music");
@@ -303,7 +331,7 @@
         </a>
     </div>
       <script src="mediapipe.js" ></script>
-    </div>
+    
 
 </body>
 </html>

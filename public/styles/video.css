@@ -90,7 +90,7 @@ html, body{
   letter-spacing: 2%;
   color: #F4F6FB;
   text-align: center;
-
+  display: flex;
   float: right;
   margin-left: 84%;
   background: #FF645C;
@@ -134,9 +134,21 @@ html, body{
     width: 20%;
     height: 35%;
     font-size: 20px;
-
+    margin-right: 0px;
   }
-
+  .closeButton{
+    font-size: 20px;
+    width: 20%;
+  }
+  /*#carregador{
+    width: 70px;
+    height: 70px;
+    width: 60px;
+    height: 60px;
+  }
+  #pCorrida{
+    top: 85%;
+  }*/
 }
 /*smartphone vertical */
 @media screen and (max-width:800px) and (orientation:portrait){
@@ -147,6 +159,9 @@ html, body{
     display: none;
    }
   #video{
+    display: none;
+  }
+  .closeButton{
     display: none;
   }
 }
@@ -178,3 +193,68 @@ html, body{
     height: 40%;
    }
 }
+/*carregamento*/
+#carregador {
+  position: absolute;
+  left: 50%;
+  margin-right: -50%;
+  top: 50%;
+  z-index: 1;
+  width: 130px;
+  height: 130px;
+  margin: -75px 0 0 -75px;
+  border: 12px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 12px solid #1155cc;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear;
+  animation: spin 2s linear;
+}
+#pCorrida{
+  position: absolute;
+  color: black;
+  left: 50%;
+  margin-right: -50%;
+  top: 75%;
+  z-index: 1;
+  font-size: 26px;
+  margin: -75px 0 0 -75px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Adicionar animação a página */
+.animate-bottom {
+  display: flex;
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 2s;
+  animation-name: animatebottom;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+
+#corpoPagina {
+  display: none;
+  text-align: center;
+}
+
+

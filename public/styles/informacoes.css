@@ -20,10 +20,18 @@ body{
     padding: 10px;
     border-radius: 10px;
     text-decoration: none;
+
 }
 #form:hover{
     color: #121212;
     background: #5a88d7; 
+}
+#formLink{
+    text-decoration: none;
+    font-family: "Roboto";
+    font-size: 20px;
+    font-weight: 500;
+    color: #1155cc;
 }
 .container{
     display: flex;
