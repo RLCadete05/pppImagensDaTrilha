@@ -14,8 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
     
 </head>
-<body>
-    <div style="position: absolute; width: 100%; height: 100%" >
+<body onload="mostrarPagina()">
+    <div id="corpoPagina" class="animate-bottom" style="position: absolute; width: 100%; height: 100%" >
+        <!---<button onclick="playVideo()">Iniciar Corrida</button>-->
+  
         <iframe  id="video" width="100%" height="100%" 
         frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
@@ -40,6 +42,22 @@
             <div id="minutesKilometer"></div>
         </section>
 
+        <section class="closeButton">
+            <a href="./informacoes.html">ENCERRAR CORRIDA</a>
+        </section>
+
+        <!--<section>
+             <div id="corpoPagina" class="animate-bottom">
+                <button onclick="playVideo()">Iniciar Corrida</button>
+            </div>
+        </section>-->
+
+    </div>
+        <section>
+            <div id="carregador"></div>
+            <p id="pCorrida" >Preparando corrida</p>
+        </section>
+
         <script type="text/javascript">
             var video = document.getElementById("video");
             video.src = localStorage.getItem("linkYoutube");
@@ -55,7 +73,9 @@
                     localStorage.setItem("minutos",0.0);
                     localStorage.setItem("segundos",0.0);
                     localStorage.setItem("Quilometro",0.0);
-
+                    localStorage.setItem("calorias",0.0);
+                    localStorage.setItem("passos",0.0);
+                    localStorage.setItem("minuteK",0.0);
                 }
 
             //Injetar script da API do YouTube
@@ -127,6 +147,20 @@
                     clearInterval(stopCountStep);
                     clearTimeout(stopPlayMusic);
                 }          
+            }
+            var tempoPagina;
+            function mostrarPagina() {
+                if(document.getElementsByClassName("loading").ontransitionend = true){
+                    tempoPagina = setTimeout(modificarPagina); 
+                }else {
+                    document.getElementById("carregador");
+                    document.getElementById("pCorrida");
+                }
+            }
+            function modificarPagina() {
+                document.getElementById("carregador").style.display = "none";
+                document.getElementById("pCorrida").style.display = "none";
+                document.getElementById("corpoPagina").style.display = "block";
             }
 
             var musicAudio = document.getElementById("music");
@@ -248,10 +282,10 @@
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 let tempo = parseInt(localStorage.getItem('tempo'));
                 minuteskm = ((tempo / 60) / (distancia/1000)).toFixed(2);
+                localStorage.setItem("minuteK", minuteskm);
                 document.getElementById("minutesKilometer").innerHTML =  minuteskm + " Min/km";
             }
 
-    
             //funçāo das calorias
            
             function calori() {
@@ -263,6 +297,7 @@
                     calorias = 0;
                 }
                 calorias = calo;
+                localStorage.setItem("calorias", calo);
                 document.getElementById('calorias').innerHTML = calorias + " Calorias";                
             }
 
@@ -275,6 +310,7 @@
             function countSteps() {
                 let distancia = parseInt(localStorage.getItem("distancia"));
                 passos = Math.round(step * distancia);
+                localStorage.setItem("passos", passos);
                 document.getElementById('steps').innerHTML =  passos + " Passos";
             }
         </script>
@@ -295,7 +331,7 @@
         </a>
     </div>
       <script src="mediapipe.js" ></script>
-    </div>
+    
 
 </body>
 </html>
